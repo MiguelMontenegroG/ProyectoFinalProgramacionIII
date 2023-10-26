@@ -17,7 +17,7 @@ public class Destino {
 
     private String nombre;
     private Ciudades ciudad;
-    private String descripcio;
+    private String descripcion;
     private ArrayList<String> imagenes;
     private Clima clima;
 

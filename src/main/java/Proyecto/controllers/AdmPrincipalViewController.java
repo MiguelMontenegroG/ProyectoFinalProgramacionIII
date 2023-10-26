@@ -4,24 +4,34 @@ package Proyecto.controllers;
 import Proyecto.enums.Ciudades;
 import Proyecto.enums.Clima;
 import Proyecto.enums.Lenguajes;
+import Proyecto.exceptions.CampoObligatorio;
+import Proyecto.exceptions.InformacionNoExiste;
+import Proyecto.exceptions.SeleccionarNoOpcion;
+import Proyecto.exceptions.SeleccioneCargar;
 import Proyecto.model.AgenciaViajes;
 import Proyecto.model.Destino;
 import Proyecto.model.GuiaTuristico;
 import Proyecto.model.PaqueteTuristico;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.util.*;
 
 public class AdmPrincipalViewController {
     private final AgenciaViajes agenciaViajes = AgenciaViajes.getInstance();
-
+    private ArrayList<String> imagenes = new ArrayList<>();
     //---------------------------------------------------------------------------//
     ObservableList<Destino> listaDestinoData = FXCollections.observableArrayList();
     Destino destinoSeleccionado;
@@ -47,6 +57,9 @@ public class AdmPrincipalViewController {
 
     @FXML
     private Button btnAdmDestinoNuevo;
+
+    @FXML
+    private Button btnAdmDestinoSeleccionarImag;
 
     @FXML
     private Button btnAdmGuiaActualizar;
@@ -86,6 +99,7 @@ public class AdmPrincipalViewController {
 
     @FXML
     private Button btnPaquete;
+
     @FXML
     private AnchorPane destinoForm;
 
@@ -163,16 +177,15 @@ public class AdmPrincipalViewController {
 
     @FXML
     private TableView<PaqueteTuristico> tableAdmPaquete;
-    @FXML
-    private TextField txtAdmDestinoCiudad;
-    @FXML
-    private TextField txtAdmDestinoClima;
 
     @FXML
     private TextArea txtAdmDestinoDescripcion;
 
     @FXML
     private TextField txtAdmDestinoNombre;
+
+    @FXML
+    private ImageView imagenView;
 
     @FXML
     private PasswordField txtAdmGuiaContraseña;
@@ -185,7 +198,6 @@ public class AdmPrincipalViewController {
 
     @FXML
     private TextField txtAdmGuiaIdentificacion;
-
     @FXML
     private TextField txtAdmGuiaLenguajes;
 
@@ -211,9 +223,50 @@ public class AdmPrincipalViewController {
     private DatePicker dataAdmPaqueteFechaDisponible;
 
     @FXML
-    void actualizarAdmDestinoAction(ActionEvent event) {
-
+    void SeleccionarImagAdmDestinoAction(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(null);
+        if (file != null) {
+            String rutaImagen = file.getAbsolutePath();
+            imagenes.add(rutaImagen);
+            Image imagen = new Image(file.toURI().toString());
+            imagenView.setImage(imagen);
+        }
     }
+    @FXML
+    void actualizarAdmDestinoAction(ActionEvent event) {
+        actualizarDestinoAdm();
+    }
+
+    private void actualizarDestinoAdm() {
+        String nombre = txtAdmDestinoNombre.getText();
+        String descripcion = txtAdmDestinoDescripcion.getText();
+        String valorClima = comboxOpcionesClima.getValue();
+        String valorCiudad = comboxOpcionesCiudad.getValue();
+        Clima clima = null;
+        Ciudades ciudad = null;
+        if (valorClima != null) {
+            clima = Clima.obtenerNombreClima(valorClima);
+        }
+        if (valorCiudad != null) {
+            ciudad = Ciudades.obtenerNombreCiudades(valorCiudad);
+        }
+        try {
+            boolean esDestinoActualizado;
+            if (destinoSeleccionado != null) {
+                esDestinoActualizado = agenciaViajes.actualizarDestino(destinoSeleccionado.getNombre(), nombre, ciudad, descripcion, imagenes, clima);
+                if (esDestinoActualizado) {
+                    tableAdmDestino.refresh();
+                    mostrarMensaje("Notificación", "El destino", "se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposDestino();
+                    tableAdmDestino.getSelectionModel().select(null);
+                }
+            }
+        } catch (CampoObligatorio | SeleccioneCargar | SeleccionarNoOpcion e) {
+            mostrarMensaje("Notificación", "El destino no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
 
     @FXML
     void actualizarAdmGuiaAction(ActionEvent event) {
@@ -226,12 +279,47 @@ public class AdmPrincipalViewController {
     }
 
     @FXML
-    void agragarAdmGuiaAction(ActionEvent event) {
+    void agregarAdmDestinoAction(ActionEvent event) {
+        crearDestinoAdm();
+    }
 
+    private void crearDestinoAdm() {
+        String nombre = txtAdmDestinoNombre.getText();
+        String descripcion = txtAdmDestinoDescripcion.getText();
+        String valorClima = comboxOpcionesClima.getValue();
+        String valorCiudad = comboxOpcionesCiudad.getValue();
+        Clima climas = null;
+        Ciudades ciudades = null;
+        if (valorClima != null) {
+            climas = Clima.obtenerNombreClima(valorClima);
+        }
+        if (valorCiudad != null) {
+            ciudades = Ciudades.obtenerNombreCiudades(valorCiudad);
+        }
+        try {
+            Destino destino;
+            destino = agenciaViajes.crearDestino(nombre, ciudades, descripcion, imagenes, climas);
+            if (destino != null) {
+                listaDestinoData.add(destino);
+                mostrarMensaje("Notificación", "El destino", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
+                limpiarCamposDestino();
+            }
+        } catch (CampoObligatorio | InformacionNoExiste | SeleccionarNoOpcion | SeleccioneCargar e) {
+            mostrarMensaje("Notificación", "El destino se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    private void limpiarCamposDestino() {
+        txtAdmDestinoDescripcion.setText("");
+        txtAdmDestinoNombre.setText("");
+        imagenView.setImage(null);
+        comboxOpcionesCiudad.setValue("");
+        comboxOpcionesClima.setValue("");
+        destinoSeleccionado = null;
     }
 
     @FXML
-    void agregarAdmDestinoAction(ActionEvent event) {
+    void agragarAdmGuiaAction(ActionEvent event) {
 
     }
 
@@ -242,7 +330,27 @@ public class AdmPrincipalViewController {
 
     @FXML
     void eliminarAdmDestinoAction(ActionEvent event) {
+        eliminarAdmDestino();
+    }
 
+    private void eliminarAdmDestino() {
+        boolean destinoEliminado;
+        if (destinoSeleccionado != null) {
+            if (mostrarMensajeConfirmacion("¿Esta seguro de eliminar al destino?")) {
+                destinoEliminado = agenciaViajes.eliminarDestino(destinoSeleccionado.getNombre());
+                if (destinoEliminado==true) {
+                    listaDestinoData.remove(destinoSeleccionado);
+                    tableAdmDestino.refresh();
+                    tableAdmDestino.getSelectionModel().clearSelection();
+                    limpiarCamposDestino();
+                    mostrarMensaje("Notificacion destino", "Destino eliminado",
+                            "El destino se ha eliminado con exito", Alert.AlertType.INFORMATION);
+                } else {
+                    mostrarMensaje("Notificacion destino", "destino no eliminado", "El destino no se puede eliminar",
+                            Alert.AlertType.ERROR);
+                }
+            }
+        }
     }
 
     @FXML
@@ -257,7 +365,8 @@ public class AdmPrincipalViewController {
 
     @FXML
     void nuevoAdmDestinoAction(ActionEvent event) {
-
+        limpiarCamposDestino();
+        tableAdmDestino.getSelectionModel().select(null);
     }
 
     @FXML
@@ -303,6 +412,45 @@ public class AdmPrincipalViewController {
     @FXML
     void initialize() {
         mostrarCombox();
+        inicializarDestinoView();
+    }
+
+    private void inicializarDestinoView() {
+        this.clAdmDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.clAdmDestinoCiudad.setCellValueFactory(celda -> new SimpleStringProperty( celda.getValue().getCiudad().getNombreCiudad()));
+        this.clAdmDestinoClima.setCellValueFactory(celda -> new SimpleStringProperty(celda.getValue().getClima().getNombreClima()));
+        this.clAdmDestinoDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+        tableAdmDestino.getItems().clear();
+        tableAdmDestino.setItems(getListaDestinoData());
+        tableAdmDestino.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                destinoSeleccionado = newSelection;
+                mostraInformacionDestino(destinoSeleccionado);
+            }
+        });
+    }
+
+    public ObservableList<Destino> getListaDestinoData() {
+        listaDestinoData.addAll(agenciaViajes.getListaDestinos());
+        return listaDestinoData;
+    }
+
+    private void mostraInformacionDestino(Destino destinoSeleccionado) {
+
+        if (destinoSeleccionado != null) {
+            txtAdmDestinoNombre.setText(destinoSeleccionado.getNombre());
+
+            String clima = String.valueOf(destinoSeleccionado.getClima());
+            comboxOpcionesClima.setValue(clima);
+
+            String ciudad = String.valueOf(destinoSeleccionado.getCiudad());
+            comboxOpcionesCiudad.setValue(ciudad);
+
+            imagenView.setImage(new Image(destinoSeleccionado.getImagenes().get(0)));
+
+            String descripcion = destinoSeleccionado.getDescripcion();
+            txtAdmDestinoDescripcion.setText(descripcion);
+        }
     }
 
     private void mostrarCombox() {
@@ -343,6 +491,7 @@ public class AdmPrincipalViewController {
         }
         comboxOpcionesCiudad.setItems(listaCiudadesFormateadas);
     }
+
 
     //--------------------------------------------------------------------//
     private void mostrarMensaje(String titulo, String header, String contenido, Alert.AlertType alertType) {
