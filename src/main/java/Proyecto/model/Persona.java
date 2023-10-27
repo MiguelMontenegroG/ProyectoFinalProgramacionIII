@@ -11,13 +11,13 @@ public abstract class Persona {
     private String nombreCompleto;
     private String identificacion;
     private String correo;
-    private String pasword;
+    private String password;
 
-    public Persona(String nombreCompleto, String identificacion, String correo, String pasword) {
+    public Persona(String nombreCompleto, String identificacion, String correo, String password) {
         this.nombreCompleto = nombreCompleto;
         this.identificacion = identificacion;
         this.correo = correo;
-        this.pasword = pasword;
+        this.password = password;
     }
 
 }

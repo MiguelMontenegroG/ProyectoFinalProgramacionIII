@@ -1,6 +1,7 @@
 package Proyecto.utils;
 
 import Proyecto.model.Destino;
+import Proyecto.model.GuiaTuristico;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
@@ -27,6 +28,20 @@ public class Persistencia {
                     destino.getDescripcion();
             ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_DESTINO, List.of(linea), true);
         } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+    }
+
+    public static void escribirGuiaTuristico(GuiaTuristico guiaTuristico) {
+        try {
+            String linea = guiaTuristico.getNombreCompleto()+";"+
+                    guiaTuristico.getIdentificacion()+";"+
+                    guiaTuristico.getLenguaje()+";"+
+                    guiaTuristico.getExperiencia()+";"+
+                    guiaTuristico.getCorreo()+";"+
+                    guiaTuristico.getPassword();
+            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_GUIAS,List.of(linea),true);
+        }catch (IOException e) {
             log.severe(e.getMessage());
         }
     }

@@ -2,10 +2,10 @@ package Proyecto.model;
 
 import Proyecto.enums.Lenguajes;
 import lombok.*;
-
+@NoArgsConstructor
 @Setter
 @Getter
-@ToString
+@ToString(callSuper=true)
 public class GuiaTuristico extends Persona{
 
     private int experiencia;
