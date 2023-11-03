@@ -2,6 +2,7 @@ package Proyecto.model;
 
 import lombok.*;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,8 +12,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class PaqueteTuristico {
-    //---------------------//
+public class PaqueteTuristico implements Serializable {
+
     private String nombre;
     private int duracion;
     private ArrayList<String> serviciosAdicionales;

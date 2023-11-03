@@ -2,6 +2,7 @@ package Proyecto.utils;
 
 import Proyecto.model.Destino;
 import Proyecto.model.GuiaTuristico;
+import Proyecto.model.PaqueteTuristico;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
@@ -44,6 +45,21 @@ public class Persistencia {
         }catch (IOException e) {
             log.severe(e.getMessage());
         }
+    }
+
+    public static void escribirPaqueteTuristico(PaqueteTuristico paqueteTuristico) {
+        try {
+            String linea = paqueteTuristico.getNombre() + ";" +
+                    paqueteTuristico.getDuracion() + ";" +
+                    paqueteTuristico.getServiciosAdicionales() + ";" +
+                    paqueteTuristico.getPrecio() + ";" +
+                    paqueteTuristico.getCupoMaxPersona() + ";" +
+                    paqueteTuristico.getFechaDisponibles();
+            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_PAQUETES, List.of(linea), true);
+        } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+
     }
 
 //    public static ArrayList<Cliente> leerCliente() {

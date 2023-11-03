@@ -20,6 +20,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.net.URL;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -281,9 +282,9 @@ public class AdmPrincipalViewController {
         if (valorLenguajes != null) {
             lenguajes = Lenguajes.obtenerNombreLenguajes(valorLenguajes);
         }
-        try {
-            boolean esGuiaTuristicoActualizado;
-            if (guiaTuristicoSeleccionado != null) {
+        boolean esGuiaTuristicoActualizado;
+        if (guiaTuristicoSeleccionado != null) {
+            try {
                 esGuiaTuristicoActualizado = agenciaViajes.actualizarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion(), nombreCompleto, identificacion, usuario, password, experiencia, lenguajes);
                 if (esGuiaTuristicoActualizado) {
                     tableAdmGuias.refresh();
@@ -291,15 +292,51 @@ public class AdmPrincipalViewController {
                     limpiarCamposGuias();
                     tableAdmGuias.getSelectionModel().select(null);
                 }
+            } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
+                mostrarMensaje("Notificación", "La guia turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
             }
-        } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
-            mostrarMensaje("Notificación", "La guia turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
 
     @FXML
     void actualizarAdmPaqueteAction(ActionEvent event) {
+        actualizarAdmPaquete();
+    }
 
+    private void actualizarAdmPaquete() {
+        String nombre = txtAdmPaqueteNombre.getText();
+        String serviciosAdicionalesTexto = txtAdmPaqueteServicioAdicionales.getText();
+        ArrayList<String> serviciosAdicionales = new ArrayList<>(Arrays.asList(serviciosAdicionalesTexto));
+        int duracion = 0;
+        if (!txtAdmPaqueteDuracion.getText().isEmpty()) {
+            duracion = Integer.parseInt(txtAdmPaqueteDuracion.getText());
+        }
+        int cupoMaxPersona = 0;
+        if (!txtAdmPaqueteCupoMaxPersonas.getText().isEmpty()) {
+            cupoMaxPersona = Integer.parseInt(txtAdmPaqueteCupoMaxPersonas.getText());
+        }
+        Double precio = 0.0;
+        if (!txtAdmPaquetePrecio.getText().isEmpty()) {
+            precio = Double.parseDouble(txtAdmPaquetePrecio.getText());
+        }
+        LocalDateTime fechaDisponibles = null;
+        if (dataAdmPaqueteFechaDisponible.getValue() != null) {
+            fechaDisponibles = dataAdmPaqueteFechaDisponible.getValue().atStartOfDay();
+        }
+        boolean esPaqueteTuristicoActualizado;
+        if (paqueteTuristicoSeleccionado != null) {
+            try {
+                esPaqueteTuristicoActualizado = agenciaViajes.actualizarPaqueteTuristico(paqueteTuristicoSeleccionado.getNombre(), nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles);
+                if (esPaqueteTuristicoActualizado) {
+                    tableAdmPaquete.refresh();
+                    mostrarMensaje("Notificación", "El paquete turistico", "se ha actualizado con éxito", Alert.AlertType.INFORMATION);
+                    limpiarCamposPaqueteTuristico();
+                    tableAdmPaquete.getSelectionModel().select(null);
+                }
+            } catch (CampoNegativo | CampoObligatorio | FechaException e) {
+                mostrarMensaje("Notificación", "El paquete turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
+            }
+        }
     }
 
     @FXML
@@ -386,7 +423,51 @@ public class AdmPrincipalViewController {
 
     @FXML
     void agregarAdmPaqueteAction(ActionEvent event) {
+        agregarAdmPaquete();
+    }
 
+    private void agregarAdmPaquete() {
+        String nombre = txtAdmPaqueteNombre.getText();
+        String serviciosAdicionalesTexto = txtAdmPaqueteServicioAdicionales.getText();
+        ArrayList<String> serviciosAdicionales = new ArrayList<>(Arrays.asList(serviciosAdicionalesTexto));
+        int duracion = 0;
+        if (!txtAdmPaqueteDuracion.getText().isEmpty()) {
+            duracion = Integer.parseInt(txtAdmPaqueteDuracion.getText());
+        }
+        int cupoMaxPersona = 0;
+        if (!txtAdmPaqueteCupoMaxPersonas.getText().isEmpty()) {
+            cupoMaxPersona = Integer.parseInt(txtAdmPaqueteCupoMaxPersonas.getText());
+        }
+        Double precio = 0.0;
+        if (!txtAdmPaquetePrecio.getText().isEmpty()) {
+            precio = Double.parseDouble(txtAdmPaquetePrecio.getText());
+        }
+        LocalDateTime fechaDisponibles = null;
+        if (dataAdmPaqueteFechaDisponible.getValue() != null) {
+            fechaDisponibles = dataAdmPaqueteFechaDisponible.getValue().atStartOfDay();
+        }
+        try {
+            PaqueteTuristico paqueteTuristico;
+            paqueteTuristico = agenciaViajes.crearPaquete(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles);
+            if (paqueteTuristico != null) {
+                listaPaqueteTuristicoData.add(paqueteTuristico);
+                mostrarMensaje("Notificación", "El paquete turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
+                limpiarCamposPaqueteTuristico();
+            }
+        } catch (CampoNegativo | FechaException | CampoObligatorio e) {
+            mostrarMensaje("Notificación", "El paquete turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
+        }
+
+    }
+
+    private void limpiarCamposPaqueteTuristico() {
+        txtAdmPaquetePrecio.setText("");
+        txtAdmPaqueteDuracion.setText("");
+        txtAdmPaqueteNombre.setText("");
+        txtAdmPaqueteServicioAdicionales.setText("");
+        txtAdmPaqueteCupoMaxPersonas.setText("");
+        dataAdmPaqueteFechaDisponible.setValue(null);
+        paqueteTuristicoSeleccionado = null;
     }
 
     @FXML
@@ -441,7 +522,27 @@ public class AdmPrincipalViewController {
 
     @FXML
     void eliminarAdmPaqueteAction(ActionEvent event) {
+        eliminarAdmPaquete();
+    }
 
+    private void eliminarAdmPaquete() {
+        boolean paqueteTuristicoEliminado;
+        if (paqueteTuristicoSeleccionado != null) {
+            if (mostrarMensajeConfirmacion("¿Esta seguro de eliminar al paquete turistico?")) {
+                paqueteTuristicoEliminado = agenciaViajes.eliminarPaqueteTuristico(paqueteTuristicoSeleccionado.getNombre());
+                if (paqueteTuristicoEliminado == true) {
+                    listaPaqueteTuristicoData.remove(paqueteTuristicoSeleccionado);
+                    tableAdmPaquete.refresh();
+                    tableAdmPaquete.getSelectionModel().clearSelection();
+                    limpiarCamposPaqueteTuristico();
+                    mostrarMensaje("Notificacion el paquete turistico", "El paquete turistico eliminado",
+                            "EL paquete turistico se ha eliminado con exito", Alert.AlertType.INFORMATION);
+                } else {
+                    mostrarMensaje("Notificacion el paquete turistico", "El paquete turistico no eliminado", "La guia turistico no se puede eliminar",
+                            Alert.AlertType.ERROR);
+                }
+            }
+        }
     }
 
     @FXML
@@ -458,7 +559,8 @@ public class AdmPrincipalViewController {
 
     @FXML
     void nuevoAdmPaqueteAction(ActionEvent event) {
-
+        limpiarCamposPaqueteTuristico();
+        tableAdmPaquete.getSelectionModel().select(null);
     }
 
     @FXML
@@ -496,8 +598,35 @@ public class AdmPrincipalViewController {
         mostrarCombox();
         inicializarDestinoView();
         inicializarGuiasView();
+        inicializarPaqueteTuristicoView();
     }
 
+    private void inicializarPaqueteTuristicoView() {
+        this.clAdmPaqueteNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        this.clAdmPaqueteServicioAdicional.setCellValueFactory(new PropertyValueFactory<>("serviciosAdicionales"));
+        this.clAdmPaqueteCupo.setCellValueFactory(new PropertyValueFactory<>("cupoMaxPersona"));
+        this.clAdmPaqueteDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+        this.clAdmPaqueteFechaDisponibles.setCellValueFactory(new PropertyValueFactory<>("fechaDisponibles"));
+        this.clAdmPaquetePrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        tableAdmPaquete.getItems().clear();
+        tableAdmPaquete.setItems(getlistaPaqueteTuristicoData());
+        tableAdmPaquete.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                paqueteTuristicoSeleccionado = newSelection;
+                mostraInformacionPaqueteTuristico(paqueteTuristicoSeleccionado);
+            }
+        });
+    }
+    private void mostraInformacionPaqueteTuristico(PaqueteTuristico paqueteTuristicoSeleccionado) {
+        if (paqueteTuristicoSeleccionado!=null){
+            txtAdmPaqueteNombre.setText(paqueteTuristicoSeleccionado.getNombre());
+            txtAdmPaqueteServicioAdicionales.setText(String.valueOf(paqueteTuristicoSeleccionado.getServiciosAdicionales()));
+            txtAdmPaqueteDuracion.setText(String.valueOf(paqueteTuristicoSeleccionado.getDuracion()));
+            txtAdmPaquetePrecio.setText(String.valueOf(paqueteTuristicoSeleccionado.getPrecio()));
+            txtAdmPaqueteCupoMaxPersonas.setText(String.valueOf(paqueteTuristicoSeleccionado.getCupoMaxPersona()));
+            dataAdmPaqueteFechaDisponible.setValue(LocalDate.from(paqueteTuristicoSeleccionado.getFechaDisponibles()));
+        }
+    }
     private void inicializarGuiasView() {
         this.clAdmGuiasNombreCompleto.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
         this.clAdmGuiasIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
@@ -526,7 +655,7 @@ public class AdmPrincipalViewController {
             txtAdmGuiaContrasenia.setText(guiaTuristicoSeleccionado.getPassword());
         }
     }
-
+    
     private void inicializarDestinoView() {
         this.clAdmDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.clAdmDestinoCiudad.setCellValueFactory(celda -> new SimpleStringProperty(celda.getValue().getCiudad().getNombreCiudad()));
@@ -599,7 +728,6 @@ public class AdmPrincipalViewController {
         comboxOpcionesCiudad.setItems(listaCiudadesFormateadas);
     }
 
-
     //-------------------------ObservableList---------------------------------//
 
     public ObservableList<Destino> getListaDestinoData() {
@@ -614,6 +742,11 @@ public class AdmPrincipalViewController {
             }
         }
         return listaGuiaTuristicoData;
+    }
+
+    private ObservableList<PaqueteTuristico> getlistaPaqueteTuristicoData() {
+        listaPaqueteTuristicoData.addAll(agenciaViajes.getListaPaqueteTuristicos());
+        return listaPaqueteTuristicoData;
     }
 
     //-------------------------Mostrar mensaje---------------------------------//

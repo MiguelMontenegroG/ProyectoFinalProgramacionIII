@@ -2,11 +2,13 @@ package Proyecto.model;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Setter
 @Getter
 @NoArgsConstructor
 @ToString
-public abstract class Persona {
+public abstract class Persona implements Serializable{
 
     private String nombreCompleto;
     private String identificacion;

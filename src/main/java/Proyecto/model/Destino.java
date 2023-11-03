@@ -5,6 +5,7 @@ import Proyecto.enums.Ciudades;
 import Proyecto.enums.Clima;
 import lombok.*;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 @Setter
@@ -13,7 +14,7 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @ToString
 
-public class Destino {
+public class Destino implements Serializable {
 
     private String nombre;
     private Ciudades ciudad;
