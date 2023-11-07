@@ -1,0 +1,16 @@
+oct. 22, 2023 4:42:36 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 06, 2023 11:17:24 A.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 06, 2023 11:18:49 A.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
+GRAVE: Por favor, Seleccione un archivo para cargar.
+nov. 06, 2023 11:19:01 A.?M. Proyecto.model.AgenciaViajes crearDestino
+INFORMACI?N: El destino se ha creado exitosamente : gfgfg
+nov. 06, 2023 11:19:11 A.?M. Proyecto.model.AgenciaViajes actualizarDestino
+INFORMACI?N: Destino actualizado exitosamente.
+nov. 06, 2023 11:21:04 A.?M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
+GRAVE: La fecha no puede ser anterior al d?a actual
+nov. 06, 2023 11:21:13 A.?M. Proyecto.model.AgenciaViajes crearPaquete
+INFORMACI?N: El paquete turistico se ha creado exitosamente : ghfghf
+nov. 07, 2023 1:23:27 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes

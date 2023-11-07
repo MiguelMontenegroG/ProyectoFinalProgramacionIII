@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="carga de los paquetes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Creacion de la interfaz para Login.fxml">
+      <change afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/x.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +95,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697918153227</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Creacion de la interfaz para Login.fxml">
+      <created>1699386043277</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1699386043277</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -114,6 +120,7 @@
     <MESSAGE value="Creacion del proyecto con el ArchivoUtils" />
     <MESSAGE value="." />
     <MESSAGE value="carga de los paquetes" />
-    <option name="LAST_COMMIT_MESSAGE" value="carga de los paquetes" />
+    <MESSAGE value="Creacion de la interfaz para Login.fxml" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creacion de la interfaz para Login.fxml" />
   </component>
 </project>
