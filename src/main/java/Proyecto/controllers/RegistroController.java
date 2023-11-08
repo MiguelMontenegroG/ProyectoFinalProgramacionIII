@@ -1,10 +1,16 @@
 package Proyecto.controllers;
 
-import javafx.event.ActionEvent;
+import Proyecto.utils.ArchivoUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
+
+import Proyecto.utils.ArchivoUtils;
 import javafx.scene.control.PasswordField;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class RegistroController {
 
@@ -25,6 +31,25 @@ public class RegistroController {
 
     @FXML
     void handleCrearCuentaButtonAction(ActionEvent event) {
-        // Lógica para crear una cuenta
+        String usuario = adminuser.getText();
+        String contrasena = adminpass.getText();
+
+        // Verificar si se ingresaron datos válidos antes de guardarlos en el archivo
+        if (!usuario.isEmpty() && !contrasena.isEmpty()) {
+            try {
+                String rutaArchivo = "persistencia/clientes.txt";
+                List<String> datos = new ArrayList<>();
+                datos.add(usuario + "," + contrasena);
+
+                // Usar ArchivoUtils para escribir en el archivo
+                ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivo, datos, true);
+
+                // Limpiar los campos de entrada después de guardar los datos
+                adminuser.clear();
+                adminpass.clear();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
