@@ -101,11 +101,9 @@ LoginController {
                         }
                         return;
                     }
-                    else{
-                        mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
-                    }
                 }
             }
+            mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -135,15 +133,11 @@ LoginController {
 
             for (String linea : lineas) {
                 String[] partes = linea.split(",");
-                if (partes.length == 2) {
+                if (partes.length >= 2) {
                     String usuario = partes[0].trim();
                     String contrasena = partes[1].trim();
-                    String nombreCompleto = "";
-                    String  correo = "";
-                    String telefono = "";
-                    String direccion = "";
 
-                    Cliente clienteEnArchivo = new  Cliente(nombreCompleto, usuario, correo, contrasena, telefono, direccion);
+                    Cliente clienteEnArchivo = new Cliente("", usuario, "", contrasena, "", "");
 
                     if (clienteEnArchivo.getIdentificacion().equals(usuarioIngresado) && clienteEnArchivo.getPassword().equals(contrasenaIngresada)) {
                         try {
@@ -158,13 +152,13 @@ LoginController {
                         }
                         return;
                     }
-                    else{
-                        mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
-                    }
                 }
             }
+            mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 }

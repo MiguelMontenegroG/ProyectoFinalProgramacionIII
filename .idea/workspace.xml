@@ -4,16 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Todo el apartado de login y creacion de clientes ya funcional">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/persistencia/admins.txt" afterDir="false" />
+    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Ingreso.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699849665264</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta">
+      <created>1699905861691</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1699905861691</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,6 +145,7 @@
     <MESSAGE value="Creacion de la interfaz para Login.fxml" />
     <MESSAGE value="Creación controladores" />
     <MESSAGE value="Todo el apartado de login y creacion de clientes ya funcional" />
-    <option name="LAST_COMMIT_MESSAGE" value="Todo el apartado de login y creacion de clientes ya funcional" />
+    <MESSAGE value="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta" />
   </component>
 </project>
