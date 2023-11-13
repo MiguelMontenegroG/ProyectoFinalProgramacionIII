@@ -1,6 +1,7 @@
 package Proyecto.controllers;
 
-import Proyecto.model.Ingreso;
+import Proyecto.model.Cliente;
+import Proyecto.model.Persona;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -59,6 +60,7 @@ LoginController {
     private TextField adminuser;
 
     String archivoClientes = "src/main/resources/persistencia/clientes.txt";
+    String archivoAdmin = "src/main/resources/persistencia/admins.txt";
 
     private void mostrarAlerta(String titulo, String encabezado, String mensaje) {
         Alert alert = new Alert(AlertType.ERROR);
@@ -74,17 +76,19 @@ LoginController {
         String adminIngresada = adminpass.getText();
 
         try {
-            ArrayList<String> lineas = ArchivoUtils.leerArchivoBufferedReader(archivoClientes);
+            ArrayList<String> lineas = ArchivoUtils.leerArchivoBufferedReader(archivoAdmin);
 
             for (String linea : lineas) {
                 String[] partes = linea.split(",");
-                if (partes.length == 2) {
+                if (partes.length == 4) {
                     String usuario = partes[0].trim();
                     String contrasena = partes[1].trim();
+                    String nombreCompleto = "";
+                    String correo = "";
 
-                    Ingreso adminEnArchivo = new Ingreso (usuario, contrasena);
+                    Persona adminEnArchivo = new  Persona (nombreCompleto, usuario, correo, contrasena);
 
-                    if (adminEnArchivo.getUsuario().equals(adminIngresado) && adminEnArchivo.getContrasena().equals(adminIngresada)) {
+                    if (adminEnArchivo.getIdentificacion().equals(adminIngresado) && adminEnArchivo.getPassword().equals(adminIngresada)) {
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/admPrincipal.fxml"));
                             Parent root = fxmlLoader.load();
@@ -97,11 +101,13 @@ LoginController {
                         }
                         return;
                     }
+                    else{
+                        mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
         }
     }
 
@@ -132,10 +138,14 @@ LoginController {
                 if (partes.length == 2) {
                     String usuario = partes[0].trim();
                     String contrasena = partes[1].trim();
+                    String nombreCompleto = "";
+                    String  correo = "";
+                    String telefono = "";
+                    String direccion = "";
 
-                    Ingreso usuarioEnArchivo = new Ingreso (usuario, contrasena);
+                    Cliente clienteEnArchivo = new  Cliente(nombreCompleto, usuario, correo, contrasena, telefono, direccion);
 
-                    if (usuarioEnArchivo.getUsuario().equals(usuarioIngresado) && usuarioEnArchivo.getContrasena().equals(contrasenaIngresada)) {
+                    if (clienteEnArchivo.getIdentificacion().equals(usuarioIngresado) && clienteEnArchivo.getPassword().equals(contrasenaIngresada)) {
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/admPrincipal.fxml"));
                             Parent root = fxmlLoader.load();
@@ -148,12 +158,13 @@ LoginController {
                         }
                         return;
                     }
+                    else{
+                        mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
+                    }
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
-            mostrarAlerta("Error de autenticación", "Usuario o contraseña inválidos", "Por favor, verifica tus credenciales.");
-
         }
     }
-    }
+}

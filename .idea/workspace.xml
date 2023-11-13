@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Creación controladores">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Ingreso.java" afterDir="false" />
+    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Todo el apartado de login y creacion de clientes ya funcional">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/persistencia/admins.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Ingreso.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Persona.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699403186652</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Todo el apartado de login y creacion de clientes ya funcional">
+      <created>1699849665264</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1699849665264</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -135,6 +142,7 @@
     <MESSAGE value="carga de los paquetes" />
     <MESSAGE value="Creacion de la interfaz para Login.fxml" />
     <MESSAGE value="Creación controladores" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creación controladores" />
+    <MESSAGE value="Todo el apartado de login y creacion de clientes ya funcional" />
+    <option name="LAST_COMMIT_MESSAGE" value="Todo el apartado de login y creacion de clientes ya funcional" />
   </component>
 </project>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="226.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proyecto.controllers.RegistroController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="488.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Proyecto.controllers.RegistroController">
    <children>
       <Label layoutX="67.0" layoutY="41.0" text="REGISTRO">
          <font>
@@ -19,13 +19,37 @@
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="passlb" layoutX="39.0" layoutY="191.0" text="Contraseña:">
+      <Label fx:id="passlb" layoutX="38.0" layoutY="363.0" text="Contraseña:">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="adminpass" layoutX="39.0" layoutY="217.0" />
-      <Button fx:id="crearCuentabt" layoutX="76.0" layoutY="337.0" mnemonicParsing="false" onAction="#handleCrearCuentaButtonAction" text="Crear cuenta" />
+      <PasswordField fx:id="adminpass" layoutX="39.0" layoutY="395.0" />
+      <Button fx:id="crearCuentabt" layoutX="70.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleCrearCuentaButtonAction" text="Crear cuenta" />
       <TextField fx:id="adminuser" layoutX="38.0" layoutY="136.0" />
+      <Label fx:id="nomComlb" layoutX="38.0" layoutY="192.0" text="Nombre Completo:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="correolb" layoutX="38.0" layoutY="273.0" text="Correo:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nomComtf" layoutX="38.0" layoutY="227.0" />
+      <TextField fx:id="correotf" layoutX="39.0" layoutY="306.0" />
+      <TextField fx:id="telefonotf" layoutX="301.0" layoutY="136.0" />
+      <TextField fx:id="direcciontf" layoutX="301.0" layoutY="227.0" />
+      <Label fx:id="adminusuariolb1" layoutX="301.0" layoutY="107.0" text="Telefono:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="direccionlb" layoutX="301.0" layoutY="192.0" text="Direccion:">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
