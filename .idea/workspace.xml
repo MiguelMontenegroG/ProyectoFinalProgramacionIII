@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment=".">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logo/reserva.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/guias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/guias.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,6 +23,19 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <favorite-branches>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="dvBuitron" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </favorite-branches>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -86,7 +92,7 @@
       <workItem from="1699560368267" duration="1379000" />
       <workItem from="1699630089189" duration="4281000" />
       <workItem from="1699659101936" duration="4682000" />
-      <workItem from="1699832387909" duration="1796000" />
+      <workItem from="1699832387909" duration="4515000" />
     </task>
     <task id="LOCAL-00001" summary="Creacion del proyecto con el ArchivoUtils">
       <created>1697854142429</created>
@@ -102,7 +108,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697854361999</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary=".">
+      <option name="closed" value="true" />
+      <created>1699848321997</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1699848321997</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

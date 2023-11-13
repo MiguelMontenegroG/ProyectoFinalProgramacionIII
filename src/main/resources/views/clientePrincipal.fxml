@@ -4,7 +4,6 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -40,7 +39,7 @@
                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                             </effect>
                         </Separator>
-                        <Button fx:id="btnPerfii" layoutX="15.0" layoutY="249.0" mnemonicParsing="false" onAction="# mostrarVentana" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Perfil" textFill="WHITE">
+                        <Button fx:id="btnPerfii" layoutX="15.0" layoutY="249.0" mnemonicParsing="false" onAction="#mostrarVenPerCLiente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Perfil" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -57,7 +56,7 @@
                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                             </effect>
                         </Separator>
-                        <Button fx:id="btnReservas" layoutX="15.0" layoutY="373.0" mnemonicParsing="false" onAction="#mostrarVentana" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Reservas" textFill="WHITE">
+                        <Button fx:id="btnReservas" layoutX="15.0" layoutY="373.0" mnemonicParsing="false" onAction="#mostrarVenPer" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Reservas" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -69,7 +68,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnPaquetes" layoutX="15.0" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarVentana" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Paquetes" textFill="WHITE">
+                        <Button fx:id="btnPaquetes" layoutX="15.0" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarVenPqCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Paquetes" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -81,7 +80,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnCerrarSesion" layoutX="11.0" layoutY="655.0" mnemonicParsing="false" onAction="#cerrarSesionAdmAction" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" text="Cerrar sesión" textFill="WHITE">
+                        <Button fx:id="btnCerrarSesion" layoutX="11.0" layoutY="655.0" mnemonicParsing="false" onAction="#cerrarSesionClienteAction" prefHeight="50.0" prefWidth="180.0" style="-fx-background-color: transparent;" text="Cerrar sesión" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -93,7 +92,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnEstadistica" layoutX="15.0" layoutY="436.0" mnemonicParsing="false" onAction="#mostrarVentana" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Mis viajes" textFill="WHITE">
+                        <Button fx:id="btnEstadistica" layoutX="15.0" layoutY="436.0" mnemonicParsing="false" onAction="#mostraraVenMisViajesCLiente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Mis viajes" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -242,9 +241,9 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="destinoForm" layoutX="6.0" layoutY="6.0" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="paquetesForm" layoutX="6.0" layoutY="6.0" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <AnchorPane layoutX="8.0" layoutY="30.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-radius: 40px; -fx-background-color: #1D345D;">
+                                <AnchorPane layoutX="8.0" layoutY="30.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-radius: 40px; -fx-background-color: #1D345D;" visible="false">
                                     <children>
                                         <Label layoutX="301.0" layoutY="12.0" text="Paquetes" textFill="WHITE">
                                             <font>
@@ -283,17 +282,17 @@
                                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                                             </effect>
                                         </Separator>
-                                        <Button fx:id="btnBuscar" layoutX="233.0" layoutY="212.0" mnemonicParsing="false" onAction="#nuevoAdmDestinoAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Buscar" textFill="WHITE">
+                                        <Button fx:id="btnBuscarpq" layoutX="233.0" layoutY="212.0" mnemonicParsing="false" onAction="#buscarPaqueteCliente" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Buscar" textFill="WHITE">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnNuevo" layoutX="340.0" layoutY="212.0" mnemonicParsing="false" onAction="#actualizarAdmDestinoAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Nuevo" textFill="WHITE">
+                                        <Button fx:id="btnNuevo" layoutX="340.0" layoutY="212.0" mnemonicParsing="false" onAction="#NuevopqCLiente" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Nuevo" textFill="WHITE">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
                                         </Button>
-                                        <Button fx:id="btnReservar" layoutX="240.0" layoutY="614.0" mnemonicParsing="false" onAction="#eliminarAdmDestinoAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Reservar" textFill="WHITE">
+                                        <Button fx:id="btnReservar" layoutX="240.0" layoutY="614.0" mnemonicParsing="false" onAction="#reservarPq" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Reservar" textFill="WHITE">
                                             <font>
                                                 <Font size="14.0" />
                                             </font>
@@ -410,7 +409,7 @@
                                     <TableColumn fx:id="colFechaDisponible" prefWidth="147.0" text="Fecha disponibles" />
                                  </columns>
                               </TableView>
-                              <Button fx:id="btnVerImagenes" layoutX="467.0" layoutY="614.0" mnemonicParsing="false" onAction="#eliminarAdmDestinoAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Ver imagenes" textFill="WHITE">
+                              <Button fx:id="btnVerImagenes" layoutX="467.0" layoutY="614.0" mnemonicParsing="false" onAction="#verImagenesPq" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Ver imagenes" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -419,7 +418,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="pqForm" prefHeight="715.0" prefWidth="815.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="pqForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="8.0" layoutY="15.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>
@@ -470,205 +469,6 @@
                                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                                             </effect>
                                         </Separator>
-                                        <Button fx:id="btnAdmGuiaAgregar" layoutX="219.0" layoutY="312.0" mnemonicParsing="false" onAction="#agragarAdmGuiaAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Agregar" textFill="WHITE">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="btnAdmGuiaNuevo" layoutX="367.0" layoutY="312.0" mnemonicParsing="false" onAction="#nuevoAdmGuiaAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Nuevo" textFill="WHITE">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="btnAdmGuiaActualizar" layoutX="506.0" layoutY="312.0" mnemonicParsing="false" onAction="#actualizarAdmGuiaAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Actualizar" textFill="WHITE">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Button>
-                                        <Button fx:id="btnAdmGuiaEliminar" layoutX="361.0" layoutY="637.0" mnemonicParsing="false" onAction="#eliminarAdmGuiaAction" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Eliminar" textFill="WHITE">
-                                            <font>
-                                                <Font size="14.0" />
-                                            </font>
-                                        </Button>
-                                        <Label layoutX="477.0" layoutY="78.0" text="Experiencia laboral" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial Bold" size="24.0" />
-                                            </font>
-                                        </Label>
-                                        <Label layoutX="152.0" layoutY="79.0" text="Personal " textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial Bold" size="24.0" />
-                                            </font>
-                                        </Label>
-                                        <Separator layoutX="21.0" layoutY="89.0" prefHeight="7.0" prefWidth="121.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <Separator layoutX="259.0" layoutY="91.0" prefHeight="7.0" prefWidth="121.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <Separator layoutX="411.0" layoutY="90.0" prefHeight="7.0" prefWidth="58.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <Separator layoutX="700.0" layoutY="91.0" prefHeight="5.0" prefWidth="48.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <Label layoutX="333.0" layoutY="215.0" text="Usurario" textFill="WHITE">
-                                            <font>
-                                                <Font name="Arial Bold" size="24.0" />
-                                            </font>
-                                        </Label>
-                                        <Separator layoutX="21.0" layoutY="224.0" prefHeight="8.0" prefWidth="302.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <Separator layoutX="440.0" layoutY="227.0" prefHeight="5.0" prefWidth="299.0">
-                                            <effect>
-                                                <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
-                                            </effect>
-                                        </Separator>
-                                        <TableView fx:id="tableAdmGuias" layoutX="46.0" layoutY="386.0" prefHeight="242.0" prefWidth="694.0" style="-fx-border-color: #000000; -fx-border-width: 2px;">
-                                            <columns>
-                                                <TableColumn fx:id="clAdmGuiasNombreCompleto" prefWidth="144.0" text="Nombre completo" />
-                                                <TableColumn fx:id="clAdmGuiasIdentificacion" prefWidth="110.0" text="Identificacion" />
-                                                <TableColumn fx:id="clAdmGuiasCorreoElectronico" minWidth="0.0" prefWidth="138.0" text="Correo electronico" />
-                                                <TableColumn fx:id="clAdmGuiasContrasenia" prefWidth="115.0" text="Contraseña" />
-                                                <TableColumn fx:id="clAdmGuiasLenguajes" prefWidth="109.0" text="Lenguajes" />
-                                                <TableColumn fx:id="clAdmGuiasExperiencia" prefWidth="71.0" text="Experiencia" />
-                                            </columns>
-                                        </TableView>
-                                        <GridPane layoutX="22.0" layoutY="132.0" prefHeight="60.0" prefWidth="365.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="169.0" minWidth="10.0" prefWidth="169.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="9.0" prefWidth="9.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="190.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <TextField fx:id="txtAdmGuiaNombreCompleto" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="2" />
-                                                <TextField fx:id="txtAdmGuiaIdentificacion" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                                                <Label prefHeight="71.0" prefWidth="320.0" text="Nombre completo" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label text="Identificacion" textFill="WHITE" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </GridPane>
-                                        <GridPane layoutX="429.0" layoutY="132.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="11.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="190.0" minWidth="10.0" prefWidth="190.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label prefHeight="21.0" prefWidth="113.0" text="Lenguajes" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <ComboBox fx:id="comboxOpcionesLenjuajes" prefHeight="25.0" prefWidth="151.0" GridPane.columnIndex="2" />
-                                            </children>
-                                        </GridPane>
-                                        <GridPane layoutX="426.0" layoutY="162.0" prefHeight="30.0" prefWidth="276.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="102.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="0.0" prefWidth="11.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="251.0" minWidth="10.0" prefWidth="88.0" />
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="243.0" minWidth="10.0" prefWidth="71.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label prefHeight="21.0" prefWidth="105.0" text="Experiencia" textAlignment="RIGHT" textFill="WHITE" wrapText="true">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="txtAdmGuiaExperencia" prefHeight="25.0" prefWidth="80.0" GridPane.columnIndex="2" />
-                                                <Label prefHeight="21.0" prefWidth="49.0" text="Años" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="3">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </GridPane>
-                                        <GridPane layoutX="20.0" layoutY="258.0" prefHeight="30.0" prefWidth="720.0">
-                                            <columnConstraints>
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="175.0" minWidth="10.0" prefWidth="153.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="113.0" minWidth="0.0" prefWidth="0.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
-                                                <ColumnConstraints halignment="RIGHT" hgrow="SOMETIMES" maxWidth="128.0" minWidth="10.0" prefWidth="128.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="116.0" minWidth="0.0" prefWidth="0.0" />
-                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="205.0" minWidth="10.0" prefWidth="205.0" />
-                                            </columnConstraints>
-                                            <rowConstraints>
-                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                                            </rowConstraints>
-                                            <children>
-                                                <Label text="Correo electronico" textFill="WHITE">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <TextField fx:id="txtAdmGuiaCorreoElectronico" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="2" />
-                                                <Label text="Contraseña" textFill="WHITE" GridPane.columnIndex="3">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <PasswordField fx:id="txtAdmGuiaContrasenia" prefHeight="25.0" prefWidth="180.0" GridPane.columnIndex="5" />
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="1">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                                <Label prefHeight="21.0" prefWidth="9.0" text=":" textAlignment="RIGHT" textFill="WHITE" wrapText="true" GridPane.columnIndex="4">
-                                                    <font>
-                                                        <Font name="Arial Bold" size="18.0" />
-                                                    </font>
-                                                </Label>
-                                            </children>
-                                        </GridPane>
                                     </children>
                                 </AnchorPane>
                             </children>
