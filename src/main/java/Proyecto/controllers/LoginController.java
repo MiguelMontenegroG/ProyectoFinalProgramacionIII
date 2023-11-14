@@ -141,7 +141,7 @@ LoginController {
 
                     if (clienteEnArchivo.getIdentificacion().equals(usuarioIngresado) && clienteEnArchivo.getPassword().equals(contrasenaIngresada)) {
                         try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/admPrincipal.fxml"));
+                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/clientePrincipal.fxml"));
                             Parent root = fxmlLoader.load();
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));

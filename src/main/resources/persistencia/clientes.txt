@@ -4,3 +4,5 @@ mario,miau
 a,a,a,a,a,a
 hola,jaja,a,a,a,a
 
+x,x,x,x,x,x
+y,y,y,y,y,y
