@@ -7,7 +7,7 @@ import java.util.Properties;
 
 
 public class Correos {
-    public static void main (String[] args){
+    public static void EnviarCorreoReserva(String correo){
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); //SMTP Host
         props.put("mail.smtp.port", "587"); //TLS Port
@@ -22,8 +22,8 @@ public class Correos {
 
         try{
             MimeMessage message = new MimeMessage(session);
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress("miguelangelmontenegrogiraldoco@gmail.com", true));
-            message.setSubject("Prueba 2");
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo, true));
+            message.setSubject("Prueba 3");
             message.setText("Su registro fue exitoso");
             System.out.println("sending...");
             Transport.send(message);
@@ -35,3 +35,6 @@ public class Correos {
         }
     }
 }
+    //public static void main (String[] args){
+
+//}
