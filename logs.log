@@ -1,0 +1,46 @@
+oct. 22, 2023 4:42:36 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 06, 2023 11:17:24 A.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 06, 2023 11:18:49 A.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
+GRAVE: Por favor, Seleccione un archivo para cargar.
+nov. 06, 2023 11:19:01 A.?M. Proyecto.model.AgenciaViajes crearDestino
+INFORMACI?N: El destino se ha creado exitosamente : gfgfg
+nov. 06, 2023 11:19:11 A.?M. Proyecto.model.AgenciaViajes actualizarDestino
+INFORMACI?N: Destino actualizado exitosamente.
+nov. 06, 2023 11:21:04 A.?M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
+GRAVE: La fecha no puede ser anterior al d?a actual
+nov. 06, 2023 11:21:13 A.?M. Proyecto.model.AgenciaViajes crearPaquete
+INFORMACI?N: El paquete turistico se ha creado exitosamente : ghfghf
+nov. 07, 2023 1:23:27 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 08, 2023 9:36:23 A.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 12, 2023 10:14:12 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 12, 2023 10:35:56 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 12, 2023 10:52:22 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 12, 2023 11:18:42 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 12:02:08 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 2:37:37 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 3:03:12 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 3:11:36 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 3:19:28 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 3:28:30 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 3:34:45 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 10:25:11 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 10:30:27 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov. 13, 2023 10:32:49 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
