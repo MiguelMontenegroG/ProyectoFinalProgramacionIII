@@ -75,6 +75,7 @@ public class RegistroController {
 
         if (!usuario.isEmpty() && !contrasena.isEmpty() && !nombreCompleto.isEmpty() && !correo.isEmpty() && !telefono.isEmpty() && !correo.isEmpty()) {
             try {
+
                 List<String> datosActuales = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
 
                 String nuevoDato = usuario + "," + contrasena + "," + nombreCompleto + "," + correo + "," + telefono + "," + direccion;

@@ -4,11 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta">
+    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,16 +36,26 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;kevinBuitron&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">
+    <option name="selectedUrlAndAccountId">
+      <UrlAndAccount>
+        <option name="accountId" value="b98d1ba8-6fcb-4fbb-bae5-5779d4f71302" />
+        <option name="url" value="https://github.com/MiguelMontenegroG/ProyectoFinalProgramacionIII.git" />
+      </UrlAndAccount>
+    </option>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="2X3MwTKBFKEhOPp2f0NmTv51zYH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -51,11 +67,17 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dvBuitron&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/acer/Documents/ProyectoFinalProgramacionIII/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -74,6 +96,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697853549030</updated>
+      <workItem from="1700068548037" duration="6221000" />
+      <workItem from="1700076301944" duration="851000" />
     </task>
     <task id="LOCAL-00001" summary="Creacion del proyecto con el ArchivoUtils">
       <created>1697854142429</created>
@@ -126,6 +150,9 @@
     </task>
     <option name="localTasksCounter" value="8" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

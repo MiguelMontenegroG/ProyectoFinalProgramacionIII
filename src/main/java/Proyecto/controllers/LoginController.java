@@ -133,16 +133,21 @@ LoginController {
 
             for (String linea : lineas) {
                 String[] partes = linea.split(",");
-                if (partes.length >= 2) {
+                if (partes.length >= 3) {
                     String usuario = partes[0].trim();
                     String contrasena = partes[1].trim();
+                    String nombre = partes[2].trim();
 
-                    Cliente clienteEnArchivo = new Cliente("", usuario, "", contrasena, "", "");
+                    Cliente clienteEnArchivo = new Cliente(nombre, usuario, "", contrasena, "", "");
 
                     if (clienteEnArchivo.getIdentificacion().equals(usuarioIngresado) && clienteEnArchivo.getPassword().equals(contrasenaIngresada)) {
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/clientePrincipal.fxml"));
                             Parent root = fxmlLoader.load();
+                            // Obtén el controlador de la ventana principal del cliente
+                            ClientePrincipalController clientePrincipalController = fxmlLoader.getController();
+                            // Pasa el cliente autenticado al controlador
+                            clientePrincipalController.initData(clienteEnArchivo);
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
