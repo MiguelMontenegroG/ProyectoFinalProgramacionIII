@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Ventana de inicio, creación de alertas">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +89,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="" />
+      <changelist id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Ventana de inicio, creación de alertas" />
       <created>1697853549030</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
