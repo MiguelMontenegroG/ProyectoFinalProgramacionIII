@@ -39,7 +39,7 @@
                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                             </effect>
                         </Separator>
-                        <Button fx:id="btnPerfii" layoutX="15.0" layoutY="249.0" mnemonicParsing="false" onAction="#mostrarVenPerCLiente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Perfil" textFill="WHITE">
+                        <Button fx:id="btnPerfii" layoutX="15.0" layoutY="249.0" mnemonicParsing="false" onAction="#mostrarVenCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Perfil" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -56,7 +56,7 @@
                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                             </effect>
                         </Separator>
-                        <Button fx:id="btnReservas" layoutX="15.0" layoutY="373.0" mnemonicParsing="false" onAction="#mostrarVenPer" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Reservas" textFill="WHITE">
+                        <Button fx:id="btnReservas" layoutX="15.0" layoutY="373.0" mnemonicParsing="false" onAction="#mostrarVenCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Reservas" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -68,7 +68,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnPaquetes" layoutX="15.0" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarVenPqCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Paquetes" textFill="WHITE">
+                        <Button fx:id="btnPaquetes" layoutX="15.0" layoutY="312.0" mnemonicParsing="false" onAction="#mostrarVenCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Paquetes" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -92,7 +92,7 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                        <Button fx:id="btnEstadistica" layoutX="15.0" layoutY="436.0" mnemonicParsing="false" onAction="#mostraraVenMisViajesCLiente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Mis viajes" textFill="WHITE">
+                        <Button fx:id="btnEstadistica" layoutX="15.0" layoutY="436.0" mnemonicParsing="false" onAction="#mostrarVenCliente" prefHeight="50.0" prefWidth="170.0" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-radius: 10px;" text="Mis viajes" textFill="WHITE">
                             <font>
                                 <Font name="Arial Bold" size="18.0" />
                             </font>
@@ -120,7 +120,7 @@
             <center>
                 <AnchorPane prefHeight="693.0" prefWidth="816.0" style="-fx-background-color: #2F5597; -fx-border-color: #000000; -fx-border-width: 3px;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane fx:id="perfilForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="perfilForm" prefHeight="715.0" prefWidth="815.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="14.0" layoutY="7.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>
@@ -243,7 +243,7 @@
                         </AnchorPane>
                         <AnchorPane fx:id="paquetesForm" layoutX="6.0" layoutY="6.0" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
-                                <AnchorPane layoutX="8.0" layoutY="30.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-radius: 40px; -fx-background-color: #1D345D;" visible="false">
+                                <AnchorPane layoutX="8.0" layoutY="30.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-radius: 40px; -fx-background-color: #1D345D;">
                                     <children>
                                         <Label layoutX="301.0" layoutY="12.0" text="Paquetes" textFill="WHITE">
                                             <font>
@@ -418,7 +418,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="pqForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="reservaForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="8.0" layoutY="15.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>
@@ -473,7 +473,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="estadisticaForm" prefHeight="711.0" prefWidth="818.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="misViajesForm" prefHeight="711.0" prefWidth="818.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="8.0" layoutY="15.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>

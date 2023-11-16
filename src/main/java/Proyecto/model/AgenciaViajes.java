@@ -28,6 +28,7 @@ public class AgenciaViajes {
     private ArrayList<Persona> listaPersona;
     private ArrayList<Reserva> listaReservas;
     private ArrayList<PaqueteTuristico> listaPaqueteTuristicos;
+    @Getter
     private ArrayList<Destino> listaDestinos;
 
     //-----LOGGER----//
@@ -519,4 +520,9 @@ public class AgenciaViajes {
         LOGGER.severe("El paquete turistico no se puede eliminar");
         return false;
     }
+    public void agregarDestino(String nombre, double precio) {
+        Destino nuevoDestino = new Destino("kjk" ,Ciudades.APARTADÓ, "jjl",null ,Clima.CALIDO);
+        listaDestinos.add(nuevoDestino);
+    }
+
 }
