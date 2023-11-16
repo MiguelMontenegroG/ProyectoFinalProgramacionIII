@@ -2,8 +2,6 @@ package Proyecto.controllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -19,14 +17,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.util.Callback;
 
 public class ClientePrincipalController implements Initializable {
 
     String rutaArchivo = "src/main/resources/persistencia/clientes.txt";
     public AnchorPane misViajesForm;
     private Cliente clienteAutenticado;
-    private ModelFactory modelFactory;
+
     @FXML
     private ResourceBundle resources;
 
@@ -70,7 +67,7 @@ public class ClientePrincipalController implements Initializable {
     private ComboBox<Clima> cbxClima;
 
     @FXML
-    private ComboBox<Destino> cbxDestino;
+    private ComboBox<String> cbxDestino;
 
     @FXML
     private ComboBox<?> cbxPaquete;
@@ -258,13 +255,31 @@ public class ClientePrincipalController implements Initializable {
     }
 
 
-    public void initData(Cliente clienteAutenticado) {
-        this.clienteAutenticado = clienteAutenticado;
-        txtIdPerfil.setText(clienteAutenticado.getIdentificacion());;
-        txtNombrePerfil.setText(clienteAutenticado.getNombreCompleto());
-        txtCorreoPerfil.setText(clienteAutenticado.getCorreo());
-        txtDireccionPerfil.setText(clienteAutenticado.getDireccionResidencia());
-        txtTelefonoPerfil.setText(clienteAutenticado.getTelefono());
+
+        public void initData(Cliente clienteAutenticado) {
+            this.clienteAutenticado = clienteAutenticado;
+
+            try {
+                // Lee los datos del archivo y busca la línea del cliente actual
+                List<String> lineasClientes = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
+                for (String linea : lineasClientes) {
+                    String[] datosCliente = linea.split(";");
+
+                    // Supongamos que el primer campo es la identificación del cliente
+                    if (datosCliente.length > 0 && datosCliente[0].equals(clienteAutenticado.getIdentificacion())) {
+                        // Establece los datos en los campos correspondientes
+                        txtIdPerfil.setText(datosCliente[0]);
+                        txtNombrePerfil.setText(datosCliente[2]);
+                        txtCorreoPerfil.setText(datosCliente[3]);
+                        txtDireccionPerfil.setText(datosCliente[5]);
+                        txtTelefonoPerfil.setText(datosCliente[4]);
+                        break; // Rompe el bucle una vez que se ha encontrado y configurado el cliente
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                mostrarAlerta("Error de Lectura", "Hubo un error al leer el archivo.", Alert.AlertType.ERROR);
+            }
 
     }
 
@@ -273,42 +288,25 @@ public class ClientePrincipalController implements Initializable {
 
         cbxCiudad.getItems().setAll(Ciudades.values());
         cbxClima.getItems().setAll(Clima.values());
-        modelFactory = ModelFactory.getInstance();
+        List<Destino> listaDestinos = ArchivoUtils.leerDestinosDesdeArchivo("src/main/resources/persistencia/destinos.txt");
 
-        // Obtener la lista de destinos desde el ModelFactory
-        ArrayList<Destino> listaDestinos = modelFactory.getListaDestinos();
+        System.out.println(listaDestinos);
 
         // Llenar el ComboBox con los nombres de los destinos
-        cbxDestino.getItems().addAll((Destino) Collections.singleton(listaDestinos));
+        for (Destino destino : listaDestinos) {
+            cbxDestino.getItems().add(destino.getNombre());
+        }
 
-        // Configurar el renderizado de los elementos en el ComboBox
-        cbxDestino.setCellFactory(new Callback<ListView<Destino>, ListCell<Destino>>() {
-            @Override
-            public ListCell<Destino> call(ListView<Destino> param) {
-                return new ListCell<Destino>() {
-                    @Override
-                    protected void updateItem(Destino destino, boolean empty) {
-                        super.updateItem(destino, empty);
-                        if (destino != null) {
-                            setText(destino.getNombre());
-                        } else {
-                            setText(null);
-                        }
-                    }
-                };
-            }
-        });
 
-        // Configurar el manejo de selección del ComboBox si es necesario
         cbxDestino.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 // Acciones cuando se selecciona un destino en el ComboBox
-                System.out.println("Destino seleccionado: " + newValue.getNombre());
+                System.out.println("Destino seleccionado: " + newValue);
             }
         });
     }
-}
 
+}
 
 
 
