@@ -1,11 +1,20 @@
 package Proyecto.utils;
 
+import Proyecto.enums.Ciudades;
+import Proyecto.enums.Clima;
+import Proyecto.enums.Lenguajes;
 import Proyecto.model.Destino;
 import Proyecto.model.GuiaTuristico;
 import Proyecto.model.PaqueteTuristico;
+import Proyecto.model.Persona;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 @Log
@@ -19,14 +28,16 @@ public class Persistencia {
     //    public static final String RUTA_ARCHIVO_ALQUILER = "src/main/resources/persistencia/alquiler.ser";
 
 
-    //----------------------Destino---------------------------//
+    //----------------------escribir---------------------------//
     public static void escribirDestino(Destino destino) {
         try {
-            String linea = destino.getNombre() + ";" +
-                    destino.getCiudad() + ";" +
-                    destino.getClima()+ ";" +
-                    destino.getImagenes() + ";" +
-                    destino.getDescripcion();
+            String imagePath = destino.getImagenes().get(0);
+            String linea =
+                    destino.getNombre() + ";" +
+                            destino.getCiudad().getNombreCiudad() + ";" +
+                            destino.getClima().getNombreClima() + ";" +
+                            "[" + imagePath + "]" + ";" +
+                            destino.getDescripcion();
             ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_DESTINO, List.of(linea), true);
         } catch (IOException e) {
             log.severe(e.getMessage());
@@ -35,26 +46,27 @@ public class Persistencia {
 
     public static void escribirGuiaTuristico(GuiaTuristico guiaTuristico) {
         try {
-            String linea = guiaTuristico.getNombreCompleto()+";"+
-                    guiaTuristico.getIdentificacion()+";"+
-                    guiaTuristico.getLenguaje()+";"+
-                    guiaTuristico.getExperiencia()+";"+
-                    guiaTuristico.getCorreo()+";"+
-                    guiaTuristico.getPassword();
-            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_GUIAS,List.of(linea),true);
-        }catch (IOException e) {
+            String linea = guiaTuristico.getNombreCompleto() + ";" +
+                    guiaTuristico.getIdentificacion() + ";" +
+                    guiaTuristico.getCorreo() + ";" +
+                    guiaTuristico.getPassword() + ";" +
+                    guiaTuristico.getExperiencia() + ";" +
+                    guiaTuristico.getLenguaje().getNombreLenguajes();
+            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_GUIAS, List.of(linea), true);
+        } catch (IOException e) {
             log.severe(e.getMessage());
         }
     }
 
     public static void escribirPaqueteTuristico(PaqueteTuristico paqueteTuristico) {
         try {
-            String linea = paqueteTuristico.getNombre() + ";" +
-                    paqueteTuristico.getDuracion() + ";" +
-                    paqueteTuristico.getServiciosAdicionales() + ";" +
-                    paqueteTuristico.getPrecio() + ";" +
-                    paqueteTuristico.getCupoMaxPersona() + ";" +
-                    paqueteTuristico.getFechaDisponibles();
+            String linea =
+                    paqueteTuristico.getNombre() + ";" +
+                            paqueteTuristico.getDuracion() + ";" +
+                            paqueteTuristico.getServiciosAdicionales() + ";" +
+                            paqueteTuristico.getPrecio() + ";" +
+                            paqueteTuristico.getCupoMaxPersona() + ";" +
+                            paqueteTuristico.getFechaDisponibles();
             ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_PAQUETES, List.of(linea), true);
         } catch (IOException e) {
             log.severe(e.getMessage());
@@ -62,41 +74,68 @@ public class Persistencia {
 
     }
 
-//    public static ArrayList<Cliente> leerCliente() {
-//        ArrayList<Cliente> clientes = new ArrayList<>();
+    //----------------------leer---------------------------//
+
+    public static ArrayList<Persona> leerPersona() {
+        ArrayList<Persona> personas = new ArrayList<>();
+        try {
+            ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_GUIAS);
+            for (String linea : lineas) {
+                String[] partes = linea.split(";");
+                Lenguajes lenguaje = Lenguajes.obtenerNombreLenguajes(partes[5]);
+                personas.add(new GuiaTuristico(
+                        partes[0],
+                        partes[1],
+                        partes[2],
+                        partes[3],
+                        Integer.parseInt(partes[4]),
+                        lenguaje));
+            }
+        } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+        return personas;
+    }
+
+    public static ArrayList<Destino> leerDestinos() {
+        ArrayList<Destino> destino = new ArrayList<>();
+        try {
+            ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_DESTINO);
+            for (String linea : lineas) {
+                String[] partes = linea.split(";");
+                String imagePath = partes[3].substring(1, partes[3].length() - 1);
+                ArrayList<String> imagenes = new ArrayList<>(Collections.singletonList(imagePath));
+                destino.add(new Destino(
+                        partes[0],
+                        Ciudades.obtenerNombreCiudades(partes[1]),
+                        partes[4],
+                        imagenes,
+                        Clima.obtenerNombreClima(partes[2])));
+            }
+        } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+        return destino;
+    }
+
+//    public static ArrayList<PaqueteTuristico> leerPaqueteTuristicos() {
+//        ArrayList<PaqueteTuristico> paqueteTuristico = new ArrayList<>();
 //        try {
-//            ArrayList<String> lineas = ArchivoUtils.leerArchivo(RUTA_ARCHIVO_CLIENTE);
+//            ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_PAQUETES);
 //            for (String linea : lineas) {
 //                String[] partes = linea.split(";");
-//                clientes.add(new Cliente(partes[0],
-//                        partes[1],
-//                        partes[2],
-//                        partes[3],
-//                        partes[4],
-//                        partes[5]));
+//                ArrayList<String> serviciosAdicionales = new ArrayList<>(Collections.singletonList(partes[2]));
+//                paqueteTuristico.add(new PaqueteTuristico(
+//                        partes[0],
+//                        Integer.parseInt(partes[1]),
+//                        serviciosAdicionales,
+//                        Double.parseDouble(partes[3]),
+//                        Integer.parseInt(partes[4]),
+//                        LocalDateTime.parse(partes[5])));
 //            }
 //        } catch (IOException e) {
 //            log.severe(e.getMessage());
 //        }
-//        return clientes;
+//        return paqueteTuristico;
 //    }
-//
-//    //---------------------------ALQUILER-------------------------------//
-//    public static void escribirAlquiler(List<Alquiler> alquileres) {
-//        try {
-//            ArchivoUtils.serializarObjeto(RUTA_ARCHIVO_ALQUILER, alquileres);
-//        } catch (IOException e) {
-//            log.severe(e.getMessage());
-//        }
-//    }
-//    public static ArrayList<Alquiler> leerAlquiler(){
-//        ArrayList<Alquiler> alquileres = new ArrayList<>();
-//        try {
-//            alquileres = (ArrayList<Alquiler>) ArchivoUtils.deserializarObjeto(RUTA_ARCHIVO_ALQUILER);
-//        } catch (IOException | ClassNotFoundException e) {
-//            log.severe(e.getMessage());
-//        }
-//        return alquileres;
-//    }
-
 }
