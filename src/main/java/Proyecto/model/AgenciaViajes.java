@@ -41,12 +41,17 @@ public class AgenciaViajes {
      * Constructor debe ser privado para que ninguna otra clase pueda crear instancias de esta clase
      */
     private AgenciaViajes() {
+
         registrarArchivoLogger(); // Llamada al método para registrar el archivo del logger.
+
         this.listaPersona = new ArrayList<>();
+        this.listaPersona = Persistencia.leerPersona();
 
         this.listaDestinos = new ArrayList<>();
+        this.listaDestinos = Persistencia.leerDestinos();
 
         this.listaPaqueteTuristicos = new ArrayList<>();
+        //this.listaPaqueteTuristicos = Persistencia.leerPaqueteTuristicos();
 
         this.listaReservas = new ArrayList<>();
 
