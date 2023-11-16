@@ -3,14 +3,18 @@ package Proyecto.controllers;
 import Proyecto.utils.ArchivoUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Optional;
+
+import Proyecto.model.Correos;
+import javafx.stage.Stage;
+
 
 public class RegistroController {
 
@@ -57,7 +61,7 @@ public class RegistroController {
     }
 
     private void mostrarAlertaPositiva(String titulo, String encabezado, String mensaje) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION); // Utiliza INFORMATION en lugar de ERROR
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(titulo);
         alert.setHeaderText(encabezado);
         alert.setContentText(mensaje);
@@ -74,29 +78,42 @@ public class RegistroController {
         String direccion = direcciontf.getText();
 
         if (!usuario.isEmpty() && !contrasena.isEmpty() && !nombreCompleto.isEmpty() && !correo.isEmpty() && !telefono.isEmpty() && !correo.isEmpty()) {
-            try {
-                List<String> datosActuales = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
+            mostrarAlertaPositiva("Confirmación de correo", "Confirmación de correo", "Revisa tu correo, te hemos enviado un codigo de verificacón");
+            String codigo = Correos.generarCombinacion();
+            Correos.EnviarCorreoComprobacion(correo, codigo);
+            TextInputDialog cuadroComprobante = new TextInputDialog();
+            cuadroComprobante.setTitle("");
+            cuadroComprobante.setHeaderText("Ingrese el codigo enviado al correo");
+            cuadroComprobante.setContentText("Codigo: ");
+            Optional<String> resultado = cuadroComprobante.showAndWait();
+            String codigoRecibido = resultado.orElse("");
+            if (codigoRecibido.equals(codigo)) {
+                try {
+                    List<String> datosActuales = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
 
-                String nuevoDato = usuario + "," + contrasena + "," + nombreCompleto + "," + correo + "," + telefono + "," + direccion;
+                    String nuevoDato = usuario + "," + contrasena + "," + nombreCompleto + "," + correo + "," + telefono + "," + direccion;
 
-                datosActuales.add(nuevoDato);
+                    datosActuales.add(nuevoDato);
 
-                ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivo, datosActuales, false);
+                    ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivo, datosActuales, false);
 
-                adminuser.clear();
-                adminpass.clear();
-                nomComtf.clear();
-                correotf.clear();
-                telefonotf.clear();
-                direcciontf.clear();
+                    adminuser.clear();
+                    adminpass.clear();
+                    nomComtf.clear();
+                    correotf.clear();
+                    telefonotf.clear();
+                    direcciontf.clear();
 
-                mostrarAlertaPositiva("Registro Exitoso", "Datos registrados con exito", "");
+                    mostrarAlertaPositiva("Registro Exitoso", "Datos registrados con exito", "Te enviamos un correo ;)");
+                    Correos.EnviarCorreoCuentaCreada(correo, nombreCompleto);
 
-            } catch (IOException e) {
-                e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                mostrarAlerta("", "error", "");
             }
-        }
-        else{
+        } else {
             mostrarAlerta("Error de registro", "Falta de informacion", "Por favor, llena todos los espacion");
         }
     }

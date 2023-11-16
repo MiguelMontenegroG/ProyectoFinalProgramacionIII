@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Ventana de inicio, creación de alertas">
+    <list default="true" id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Cambio de color login">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Correos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Correos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Inicio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Inicio.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Login.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Registro.fxml" afterDir="false" />
     </list>
