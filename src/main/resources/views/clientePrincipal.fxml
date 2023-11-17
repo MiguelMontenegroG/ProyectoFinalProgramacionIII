@@ -120,7 +120,7 @@
             <center>
                 <AnchorPane prefHeight="693.0" prefWidth="816.0" style="-fx-background-color: #2F5597; -fx-border-color: #000000; -fx-border-width: 3px;" BorderPane.alignment="CENTER">
                     <children>
-                        <AnchorPane fx:id="perfilForm" prefHeight="715.0" prefWidth="815.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="perfilForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="14.0" layoutY="7.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>
@@ -335,7 +335,7 @@
                                                     </font>
                                                 </Label>
                                                 <ComboBox fx:id="cbxCiudad" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" />
-                                                <ComboBox fx:id="cbxDestino" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                                <ComboBox fx:id="cbxDestino" onAction="#filtDestino" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="Destino" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                                        <font>
                                           <Font name="Arial Bold" size="18.0" />
@@ -383,7 +383,7 @@
                                           <Font name="Arial Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <ComboBox fx:id="cbxPrecio" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" />
+                                    <ComboBox fx:id="cbxPrecio" onAction="#filtPrecio" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" />
                                     <ComboBox fx:id="cbxClima" prefHeight="25.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                     <Label text="Fecha ida" textFill="WHITE" GridPane.rowIndex="2">
                                        <font>
@@ -395,7 +395,7 @@
                                           <Font name="Arial Bold" size="18.0" />
                                        </font>
                                     </Label>
-                                    <DatePicker fx:id="ldFechaIda" prefHeight="26.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                    <DatePicker fx:id="ldFechaIda" onAction="#filtFecha" prefHeight="26.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                     <DatePicker fx:id="ldxFechaRegreso" prefHeight="26.0" prefWidth="195.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                                  </children>
                               </GridPane>
@@ -418,7 +418,7 @@
                                 </AnchorPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="reservaForm" prefHeight="715.0" prefWidth="815.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <AnchorPane fx:id="reservaForm" prefHeight="715.0" prefWidth="815.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <children>
                                 <AnchorPane layoutX="8.0" layoutY="15.0" prefHeight="675.0" prefWidth="785.0" style="-fx-background-color: #1D345D; -fx-background-radius: 40px;">
                                     <children>
