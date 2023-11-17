@@ -32,16 +32,12 @@ public class ArchivoUtils {
      * @throws IOException
      */
     public static ArrayList<String> leerArchivoScanner(String ruta) throws IOException{
-
         ArrayList<String> lista = new ArrayList<>();
         Scanner sc = new Scanner(new File(ruta));
-
         while(sc.hasNextLine()) {
             lista.add(sc.nextLine());
         }
-
         sc.close();
-
         return lista;
     }
 

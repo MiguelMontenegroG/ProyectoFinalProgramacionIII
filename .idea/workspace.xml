@@ -4,10 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta">
+    <list default="true" id="862144ca-9628-4207-af72-2cc61a0549c7" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/agenciaViajes/Aplicacion.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/enums/Ciudades.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/enums/Ciudades.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/enums/Lenguajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/enums/Lenguajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/exceptions/x.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Cliente.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/GuiaTuristico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/GuiaTuristico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/PaqueteTuristico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/PaqueteTuristico.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/x.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/test/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/test/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/utils/ArchivoUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/utils/ArchivoUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/utils/Persistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/utils/Persistencia.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/x.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,6 +33,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="CSS File" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -32,6 +50,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2X3MwTKBFKEhOPp2f0NmTv51zYH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -43,22 +64,22 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dvBuitron",
-    "last_opened_file_path": "C:/Users/acer/Documents/ProyectoFinalProgramacionIII/src/main/resources",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "jose",
+    "last_opened_file_path": "C:/Users/JLRH/Documents/GitHub/ProyectoFinalProgramacionIII_JL_Version_01",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "run.code.analysis.last.selected.profile": "pProject Default"
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\acer\Documents\ProyectoFinalProgramacionIII\src\main\resources" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\acer\Documents\ProyectoFinalProgramacionIII\src\main\resources\views" />
-    </key>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="$PROJECT_DIR$" />
+    </option>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -68,6 +89,36 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1697853549030</updated>
+      <workItem from="1698446524030" duration="3194000" />
+      <workItem from="1698693541982" duration="17000" />
+      <workItem from="1698696788149" duration="98000" />
+      <workItem from="1698697606115" duration="205000" />
+      <workItem from="1698703797227" duration="466000" />
+      <workItem from="1698725351332" duration="9344000" />
+      <workItem from="1698872546009" duration="832000" />
+      <workItem from="1698873583648" duration="103000" />
+      <workItem from="1698952031635" duration="667000" />
+      <workItem from="1698952717241" duration="17597000" />
+      <workItem from="1699040158479" duration="4542000" />
+      <workItem from="1699052633133" duration="949000" />
+      <workItem from="1699197375018" duration="690000" />
+      <workItem from="1699459587898" duration="4746000" />
+      <workItem from="1699488814148" duration="23793000" />
+      <workItem from="1699557776633" duration="27227000" />
+      <workItem from="1699652880358" duration="2000" />
+      <workItem from="1699662464683" duration="248000" />
+      <workItem from="1699662798530" duration="643000" />
+      <workItem from="1699852871454" duration="10324000" />
+      <workItem from="1699920454338" duration="612000" />
+      <workItem from="1700011522338" duration="66000" />
+      <workItem from="1700074469394" duration="622000" />
+      <workItem from="1700075320541" duration="19000" />
+      <workItem from="1700076766156" duration="119000" />
+      <workItem from="1700076903653" duration="2000" />
+      <workItem from="1700086081656" duration="896000" />
+      <workItem from="1700093166423" duration="1414000" />
+      <workItem from="1700094997020" duration="11000" />
+      <workItem from="1700145530844" duration="12053000" />
     </task>
     <task id="LOCAL-00001" summary="Creacion del proyecto con el ArchivoUtils">
       <created>1697854142429</created>
@@ -83,50 +134,30 @@
       <option name="project" value="LOCAL" />
       <updated>1697854361999</updated>
     </task>
-    <task id="LOCAL-00003" summary="carga de los paquetes">
-      <created>1697918153227</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1697918153227</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Creacion de la interfaz para Login.fxml">
-      <created>1699386043277</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1699386043277</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Creación controladores">
-      <created>1699403186652</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1699403186652</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Todo el apartado de login y creacion de clientes ya funcional">
-      <created>1699849665264</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1699849665264</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta">
-      <created>1699905861691</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1699905861691</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="3" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="origin/angel" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -135,11 +166,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Creacion del proyecto con el ArchivoUtils" />
     <MESSAGE value="." />
-    <MESSAGE value="carga de los paquetes" />
-    <MESSAGE value="Creacion de la interfaz para Login.fxml" />
-    <MESSAGE value="Creación controladores" />
-    <MESSAGE value="Todo el apartado de login y creacion de clientes ya funcional" />
-    <MESSAGE value="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta" />
-    <option name="LAST_COMMIT_MESSAGE" value="Arreglo en el sistema de login, ya con clases persona y cliente y mensaje de alerta" />
+    <option name="LAST_COMMIT_MESSAGE" value="." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ArrayIndexOutOfBoundsException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

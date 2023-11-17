@@ -118,24 +118,24 @@ public class Persistencia {
         return destino;
     }
 
-//    public static ArrayList<PaqueteTuristico> leerPaqueteTuristicos() {
-//        ArrayList<PaqueteTuristico> paqueteTuristico = new ArrayList<>();
-//        try {
-//            ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_PAQUETES);
-//            for (String linea : lineas) {
-//                String[] partes = linea.split(";");
-//                ArrayList<String> serviciosAdicionales = new ArrayList<>(Collections.singletonList(partes[2]));
-//                paqueteTuristico.add(new PaqueteTuristico(
-//                        partes[0],
-//                        Integer.parseInt(partes[1]),
-//                        serviciosAdicionales,
-//                        Double.parseDouble(partes[3]),
-//                        Integer.parseInt(partes[4]),
-//                        LocalDateTime.parse(partes[5])));
-//            }
-//        } catch (IOException e) {
-//            log.severe(e.getMessage());
-//        }
-//        return paqueteTuristico;
-//    }
+    public static ArrayList<PaqueteTuristico> leerPaqueteTuristicos() {
+        ArrayList<PaqueteTuristico> paqueteTuristico = new ArrayList<>();
+        try {
+            ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_PAQUETES);
+            for (String linea : lineas) {
+                String[] partes = linea.split(";");
+                ArrayList<String> serviciosAdicionales = new ArrayList<>(Collections.singletonList(partes[2]));
+                paqueteTuristico.add(new PaqueteTuristico(
+                        partes[0],
+                        Integer.parseInt(partes[1]),
+                        serviciosAdicionales,
+                        Double.parseDouble(partes[3]),
+                        Integer.parseInt(partes[4]),
+                        LocalDateTime.parse(partes[5])));
+            }
+        } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+        return paqueteTuristico;
+    }
 }

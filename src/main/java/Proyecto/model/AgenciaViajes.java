@@ -10,7 +10,7 @@ import lombok.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +50,7 @@ public class AgenciaViajes {
         this.listaDestinos = Persistencia.leerDestinos();
 
         this.listaPaqueteTuristicos = new ArrayList<>();
-       // this.listaPaqueteTuristicos = Persistencia.leerPaqueteTuristicos();
+        this.listaPaqueteTuristicos = Persistencia.leerPaqueteTuristicos();
 
         this.listaReservas = new ArrayList<>();
 
@@ -101,8 +101,9 @@ public class AgenciaViajes {
      * @throws SeleccionarNoOpcion Se lanza cuando no se selecciona una opción.
      * @throws SeleccioneCargar    Se lanza cuando no se selecciona cargar.
      */
-    public Destino crearDestino(String nombre, Ciudades ciudad, String descripcion, ArrayList<String> imagenes, Clima clima) throws InformacionNoExiste, CampoObligatorio, SeleccionarNoOpcion, SeleccioneCargar {
+    public Destino crearDestino(String nombre, Ciudades ciudad, String descripcion, ArrayList<String> imagenes, Clima clima) throws InformacionNoExiste, CampoObligatorio, SeleccionarNoOpcion, SeleccioneCargar, InformacionRepetirException {
         Destino nuevoDestino = null;
+        obtenerDestino(nombre);
         // Muestra los campos obligatorios.
         if (validarDestinoCampoObligatorio(nombre, ciudad, descripcion, imagenes, clima)) {
             nuevoDestino = new Destino();
@@ -178,10 +179,9 @@ public class AgenciaViajes {
      * @throws SeleccioneCargar    Se lanza esta excepción si no se selecciona ninguna opción para cargar.
      * @throws SeleccionarNoOpcion Se lanza esta excepción si no se selecciona ninguna opción.
      */
-    public boolean actualizarDestino(String nombreActual, String nombreNuevo, Ciudades ciudad, String descripcion, ArrayList<String> imagenes, Clima clima) throws CampoObligatorio, SeleccioneCargar, SeleccionarNoOpcion {
+    public boolean actualizarDestino(String nombreActual, String nombreNuevo, Ciudades ciudad, String descripcion, ArrayList<String> imagenes, Clima clima) throws CampoObligatorio, SeleccioneCargar, SeleccionarNoOpcion, InformacionRepetirException, InformacionNoExiste {
         Destino destino = obtenerDestino(nombreActual);
         boolean esDestinoActualizado = false;
-
         if (validarDestinoCampoObligatorio(nombreNuevo, ciudad, descripcion, imagenes, clima)) {
             if (destino != null) {
                 destino.setNombre(nombreNuevo);
@@ -206,21 +206,21 @@ public class AgenciaViajes {
      * @param nombreActual El nombre del Destino que se está buscando.
      * @return El objeto Destino si se encuentra, null si no se encuentra.
      */
-    private Destino obtenerDestino(String nombreActual) {
+    private Destino obtenerDestino(String nombreActual) throws InformacionRepetirException {
         return obtenerDestinoAux(nombreActual, 0);
     }
 
-    private Destino obtenerDestinoAux(String nombreActual, int index) {
+    private Destino obtenerDestinoAux(String nombreActual, int index) throws InformacionRepetirException {
         if (index >= listaDestinos.size()) {
             return null;
         }
         Destino destino = listaDestinos.get(index);
         if (destino.getNombre().equals(nombreActual)) {
-            return destino;
+            LOGGER.severe("El destino con el nombre  ya existe en la lista.");
+            throw new InformacionRepetirException("El destino con el nombre  ya existe en la lista.");
         }
         return obtenerDestinoAux(nombreActual, index + 1);
     }
-
 
     //----------------------ELIMINAR---------------------//
 
@@ -231,7 +231,7 @@ public class AgenciaViajes {
      * @return Retorna true si el destino se eliminó exitosamente; de lo contrario, retorna false.
      */
     public boolean eliminarDestino(String nombre) {
-        Destino destino = obtenerDestino(nombre);
+        Destino destino = buscarDestino(nombre);
         if (destino != null) {
             getListaDestinos().remove(destino);
             LOGGER.info("Destino eliminado exitosamente. " + nombre);
@@ -241,6 +241,22 @@ public class AgenciaViajes {
         return false;
     }
 
+    private Destino buscarDestino(String nombre) {
+        return buscarDestinoAux(nombre, 0);
+    }
+
+    private Destino buscarDestinoAux(String nombre, int index) {
+        if (index >= listaDestinos.size()) {
+            return null;
+        }
+        Destino destino = listaDestinos.get(index);
+        if (destino.getNombre().equals(nombre)) {
+            return destino;
+        }
+        return buscarDestinoAux(nombre, index + 1);
+    }
+
+
     //----------------------GUIAS----------------------//
     //----------------------CREAR------------------------//
 
@@ -249,7 +265,7 @@ public class AgenciaViajes {
      *
      * @param nombreCompleto El nombre completo del guía turístico.
      * @param identificacion La identificación del guía turístico.
-     * @param usuario        El correo electrónico del guía turístico.
+     * @param correo         El correo electrónico del guía turístico.
      * @param password       La contraseña del guía turístico.
      * @param experiencia    La experiencia del guía turístico.
      * @param lenguaje       El lenguaje que habla el guía turístico.
@@ -258,13 +274,14 @@ public class AgenciaViajes {
      * @throws CampoObligatorio    Se lanza si se deja un campo obligatorio vacío.
      * @throws SeleccionarNoOpcion Se lanza si no se selecciona ninguna opción donde se requiere.
      */
-    public GuiaTuristico crearGuiaTuristico(String nombreCompleto, String identificacion, String usuario, String password, int experiencia, Lenguajes lenguaje) throws CampoNegativo, CampoObligatorio, SeleccionarNoOpcion {
+    public GuiaTuristico crearGuiaTuristico(String nombreCompleto, String identificacion, String correo, String password, int experiencia, Lenguajes lenguaje) throws CampoNegativo, CampoObligatorio, SeleccionarNoOpcion, InformacionRepetirException, InformacionNoExiste {
         GuiaTuristico nuevoGuiaTuristico = null;
-        if (validarGuiaTuristicoCamposObligatorios(nombreCompleto, identificacion, usuario, password, experiencia, lenguaje)) {
+        obtenerGuiaTuristico(identificacion);
+        if (validarGuiaTuristicoCamposObligatorios(nombreCompleto, identificacion, correo, password, experiencia, lenguaje)) {
             nuevoGuiaTuristico = new GuiaTuristico();
             nuevoGuiaTuristico.setNombreCompleto(nombreCompleto);
             nuevoGuiaTuristico.setIdentificacion(identificacion);
-            nuevoGuiaTuristico.setCorreo(usuario);
+            nuevoGuiaTuristico.setCorreo(correo);
             nuevoGuiaTuristico.setPassword(password);
             nuevoGuiaTuristico.setExperiencia(experiencia);
             nuevoGuiaTuristico.setLenguaje(lenguaje);
@@ -281,7 +298,7 @@ public class AgenciaViajes {
      *
      * @param nombreCompleto El nombre completo del guía turístico. No puede ser null o vacío.
      * @param identificacion La identificación del guía turístico. No puede ser null o vacío.
-     * @param usuario        El nombre de usuario del guía turístico. No puede ser null o vacío.
+     * @param correo         El correo del guía turístico. No puede ser null o vacío.
      * @param password       La contraseña del guía turístico. No puede ser null o vacío.
      * @param experiencia    La experiencia del guía turístico en años. Debe ser un número positivo.
      * @param lenguaje       El lenguaje que habla el guía turístico. No puede ser null.
@@ -290,7 +307,7 @@ public class AgenciaViajes {
      * @throws CampoNegativo       Se lanza esta excepción cuando la experiencia es negativa o cero.
      * @throws SeleccionarNoOpcion Se lanza esta excepción cuando no se selecciona una opción para el lenguaje.
      */
-    private boolean validarGuiaTuristicoCamposObligatorios(String nombreCompleto, String identificacion, String usuario, String password, int experiencia, Lenguajes lenguaje) throws CampoObligatorio, CampoNegativo, SeleccionarNoOpcion {
+    private boolean validarGuiaTuristicoCamposObligatorios(String nombreCompleto, String identificacion, String correo, String password, int experiencia, Lenguajes lenguaje) throws CampoObligatorio, CampoNegativo, SeleccionarNoOpcion {
         if (nombreCompleto == null || nombreCompleto.isEmpty()) {
             LOGGER.log(Level.SEVERE, "El nombre completo es un campo obligatorio");
             throw new CampoObligatorio("El nombre completo es un campo obligatorio");
@@ -299,9 +316,9 @@ public class AgenciaViajes {
             LOGGER.log(Level.SEVERE, "La identificación es un campo obligatorio");
             throw new CampoObligatorio("La identificación es un campo obligatorio");
         }
-        if (usuario == null || usuario.isEmpty()) {
-            LOGGER.log(Level.SEVERE, "El usuario es un campo obligatorio");
-            throw new CampoObligatorio("El usuario es un campo obligatorio");
+        if (correo == null || correo.isEmpty()) {
+            LOGGER.log(Level.SEVERE, "El correo es un campo obligatorio");
+            throw new CampoObligatorio("El correo es un campo obligatorio");
         }
         if (password == null || password.isEmpty()) {
             LOGGER.log(Level.SEVERE, "La contraseña es un campo obligatorio");
@@ -334,17 +351,24 @@ public class AgenciaViajes {
      * @throws CampoObligatorio    Se lanza cuando se deja un campo obligatorio vacío.
      * @throws SeleccionarNoOpcion Se lanza cuando no se selecciona ninguna opción en un campo de selección.
      */
-    public boolean actualizarGuiaTuristico(String identificacionActual, String nombreCompleto, String identificacionNuevo, String usuario, String password, int experiencia, Lenguajes lenguaje) throws CampoNegativo, CampoObligatorio, SeleccionarNoOpcion {
+    public boolean actualizarGuiaTuristico(String identificacionActual, String nombreCompleto, String identificacionNuevo, String usuario, String password, int experiencia, Lenguajes lenguaje) throws CampoNegativo, CampoObligatorio, SeleccionarNoOpcion, InformacionRepetirException, InformacionNoExiste {
         GuiaTuristico guiaTuristico = obtenerGuiaTuristico(identificacionActual);
         boolean esGuiaTuristicoActualizado = false;
         if (validarGuiaTuristicoCamposObligatorios(nombreCompleto, identificacionNuevo, usuario, password, experiencia, lenguaje)) {
             if (guiaTuristico != null) {
+                if (identificacionActual.equals(identificacionNuevo) && obtenerGuiaTuristico(identificacionNuevo) != null) {
+                    LOGGER.severe("La identificación nueva ya existe en la lista.");
+                    throw new InformacionRepetirException("La identificación nueva ya existe en la lista.");
+                }
+
                 guiaTuristico.setNombreCompleto(nombreCompleto);
                 guiaTuristico.setIdentificacion(identificacionNuevo);
                 guiaTuristico.setExperiencia(experiencia);
                 guiaTuristico.setCorreo(usuario);
                 guiaTuristico.setPassword(password);
+
                 LOGGER.info("Guia turistico actualizado exitosamente.");
+
                 esGuiaTuristicoActualizado = true;
             } else {
                 LOGGER.severe("No se encontró la guia turistico para actualizar.");
@@ -360,11 +384,11 @@ public class AgenciaViajes {
      * @param identificacionActual La identificación del GuiaTuristico que se está buscando.
      * @return El objeto GuiaTuristico si se encuentra, null si no se encuentra.
      */
-    private GuiaTuristico obtenerGuiaTuristico(String identificacionActual) {
+    private GuiaTuristico obtenerGuiaTuristico(String identificacionActual) throws InformacionRepetirException {
         return obtenerGuiaTuristicoAux(identificacionActual, 0);
     }
 
-    private GuiaTuristico obtenerGuiaTuristicoAux(String identificacionActual, int index) {
+    private GuiaTuristico obtenerGuiaTuristicoAux(String identificacionActual, int index) throws InformacionRepetirException {
         if (index >= listaPersona.size()) {
             return null;
         }
@@ -384,15 +408,31 @@ public class AgenciaViajes {
      * @return Verdadero si el guía turístico se eliminó correctamente, falso en caso contrario.
      */
     public boolean eliminarGuiaTuristico(String identificacion) {
-        GuiaTuristico guiaTuristico = obtenerGuiaTuristico(identificacion);
+        GuiaTuristico guiaTuristico = buscarGuiaTuristico(identificacion);
         if (guiaTuristico != null) {
             getListaPersona().remove(guiaTuristico);
             LOGGER.info("Guia turistico eliminado exitosamente. " + identificacion);
             return true;
         }
-        LOGGER.severe("La guia turistico  no se puede eliminar");
+        LOGGER.severe("La guia turistico no se puede eliminar");
         return false;
     }
+
+    private GuiaTuristico buscarGuiaTuristico(String identificacionActual) {
+        return buscarGuiaTuristicoAux(identificacionActual, 0);
+    }
+
+    private GuiaTuristico buscarGuiaTuristicoAux(String identificacionActual, int index) {
+        if (index >= listaPersona.size()) {
+            return null;
+        }
+        Persona persona = listaPersona.get(index);
+        if (persona instanceof GuiaTuristico && persona.getIdentificacion().equals(identificacionActual)) {
+            return (GuiaTuristico) persona;
+        }
+        return buscarGuiaTuristicoAux(identificacionActual, index + 1);
+    }
+
 
     //----------------------PAQUETES----------------------//
     //----------------------CREAR------------------------//
@@ -411,8 +451,9 @@ public class AgenciaViajes {
      * @throws CampoObligatorio Se lanza cuando se deja un campo obligatorio vacío.
      * @throws FechaException   Se lanza cuando la fecha introducida no es válida.
      */
-    public PaqueteTuristico crearPaquete(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) throws CampoNegativo, CampoObligatorio, FechaException {
+    public PaqueteTuristico crearPaquete(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) throws CampoNegativo, CampoObligatorio, FechaException, InformacionRepetirException {
         PaqueteTuristico nuevoPaqueteTuristico = null;
+        obtenerPaqueteTuristico(nombre);
         if (validarPaqueteTuristicoCampoObligatorio(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles)) {
             nuevoPaqueteTuristico = new PaqueteTuristico();
             nuevoPaqueteTuristico.setNombre(nombre);
@@ -472,7 +513,25 @@ public class AgenciaViajes {
     }
 
     //----------------------ACTUALIZAR-------------------//
-    public boolean actualizarPaqueteTuristico(String nombreActual, String nombreNuevo, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) throws CampoNegativo, CampoObligatorio, FechaException {
+
+    /**
+     * Este método actualiza la información de un paquete turístico existente.
+     *
+     * @param nombreActual         El nombre actual del paquete turístico.
+     * @param nombreNuevo          El nuevo nombre que se asignará al paquete turístico.
+     * @param duracion             La duración del paquete turístico.
+     * @param serviciosAdicionales Una lista de servicios adicionales incluidos en el paquete turístico.
+     * @param precio               El precio del paquete turístico.
+     * @param cupoMaxPersona       El número máximo de personas permitidas en el paquete turístico.
+     * @param fechaDisponibles     Las fechas en las que el paquete turístico estará disponible.
+     * @return Un valor booleano que indica si la actualización fue exitosa.
+     * @throws CampoNegativo               Se lanza cuando se proporciona un valor negativo donde no se permite.
+     * @throws CampoObligatorio            Se lanza cuando falta un campo obligatorio.
+     * @throws FechaException              Se lanza cuando hay un problema con las fechas proporcionadas.
+     * @throws InformacionRepetirException Se lanza cuando se intenta duplicar información que debe ser única.
+     * @throws InformacionNoExiste         Se lanza cuando se intenta actualizar un paquete turístico que no existe.
+     */
+    public boolean actualizarPaqueteTuristico(String nombreActual, String nombreNuevo, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) throws CampoNegativo, CampoObligatorio, FechaException, InformacionRepetirException, InformacionNoExiste {
         PaqueteTuristico paqueteTuristico = obtenerPaqueteTuristico(nombreActual);
         boolean esPaqueteTuristicoActualizado = false;
         if (validarPaqueteTuristicoCampoObligatorio(nombreNuevo, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles)) {
@@ -493,24 +552,47 @@ public class AgenciaViajes {
         return esPaqueteTuristicoActualizado;
     }
 
-    private PaqueteTuristico obtenerPaqueteTuristico(String nombreActual) {
+    /**
+     * Este método busca un paquete turístico por su nombre.
+     *
+     * @param nombreActual El nombre del paquete turístico que se está buscando.
+     * @return Retorna el paquete turístico si se encuentra, de lo contrario retorna null.
+     * @throws InformacionRepetirException Se lanza cuando se encuentra un paquete turístico con el mismo nombre.
+     */
+    private PaqueteTuristico obtenerPaqueteTuristico(String nombreActual) throws InformacionRepetirException {
         return obtenerPaqueteTuristicoAux(nombreActual, 0);
     }
 
-    private PaqueteTuristico obtenerPaqueteTuristicoAux(String nombreActual, int index) {
+    /**
+     * Este método auxiliar realiza una búsqueda recursiva de un paquete turístico en la lista de paquetes turísticos.
+     *
+     * @param nombreActual El nombre del paquete turístico que se está buscando.
+     * @param index        El índice actual en la lista de paquetes turísticos.
+     * @return Retorna el paquete turístico si se encuentra, de lo contrario retorna null.
+     * @throws InformacionRepetirException Se lanza cuando se encuentra un paquete turístico con el mismo nombre.
+     */
+    private PaqueteTuristico obtenerPaqueteTuristicoAux(String nombreActual, int index) throws InformacionRepetirException {
         if (index >= listaPaqueteTuristicos.size()) {
             return null;
         }
         PaqueteTuristico paqueteTuristico = listaPaqueteTuristicos.get(index);
         if (paqueteTuristico.getNombre().equals(nombreActual)) {
-            return paqueteTuristico;
+            LOGGER.severe("El paquete turístico con el nombre  ya existe en la lista.");
+            throw new InformacionRepetirException("El paquete turístico con el nombre  ya existe en la lista.");
         }
         return obtenerPaqueteTuristicoAux(nombreActual, index + 1);
     }
 
     //----------------------ELIMINAR---------------------//
+
+    /**
+     * Este método elimina un paquete turístico de la lista de paquetes turísticos.
+     *
+     * @param nombre El nombre del paquete turístico que se desea eliminar.
+     * @return Retorna true si el paquete turístico se eliminó exitosamente, de lo contrario retorna false.
+     */
     public boolean eliminarPaqueteTuristico(String nombre) {
-        PaqueteTuristico paqueteTuristico = obtenerPaqueteTuristico(nombre);
+        PaqueteTuristico paqueteTuristico = buscarPaqueteTuristico(nombre);
         if (paqueteTuristico != null) {
             getListaPaqueteTuristicos().remove(paqueteTuristico);
             LOGGER.info("El paquete turistico eliminado exitosamente. " + nombre);
@@ -519,4 +601,33 @@ public class AgenciaViajes {
         LOGGER.severe("El paquete turistico no se puede eliminar");
         return false;
     }
+
+    /**
+     * Este método busca un paquete turístico por su nombre.
+     *
+     * @param nombreActual El nombre del paquete turístico que se está buscando.
+     * @return Retorna el paquete turístico si se encuentra, de lo contrario retorna null.
+     */
+    private PaqueteTuristico buscarPaqueteTuristico(String nombreActual) {
+        return buscarPaqueteTuristicoAux(nombreActual, 0);
+    }
+
+    /**
+     * Este método auxiliar realiza una búsqueda recursiva de un paquete turístico en la lista de paquetes turísticos.
+     *
+     * @param nombreActual El nombre del paquete turístico que se está buscando.
+     * @param index        El índice actual en la lista de paquetes turísticos.
+     * @return Retorna el paquete turístico si se encuentra, de lo contrario retorna null.
+     */
+    private PaqueteTuristico buscarPaqueteTuristicoAux(String nombreActual, int index) {
+        if (index >= listaPaqueteTuristicos.size()) {
+            return null;
+        }
+        PaqueteTuristico paqueteTuristico = listaPaqueteTuristicos.get(index);
+        if (paqueteTuristico.getNombre().equals(nombreActual)) {
+            return paqueteTuristico;
+        }
+        return buscarPaqueteTuristicoAux(nombreActual, index + 1);
+    }
+    //---------------------------------------------------------------------------------------------//
 }

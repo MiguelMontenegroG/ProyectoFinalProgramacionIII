@@ -9,7 +9,6 @@ import java.util.Date;
 
 @Setter
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 public class PaqueteTuristico implements Serializable {
@@ -24,5 +23,13 @@ public class PaqueteTuristico implements Serializable {
     //-------clase---//
     private ArrayList<Destino> listaDestinos = new ArrayList<Destino>();
 
+    public PaqueteTuristico(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) {
+        this.nombre = nombre;
+        this.duracion = duracion;
+        this.serviciosAdicionales = serviciosAdicionales;
+        this.precio = precio;
+        this.cupoMaxPersona = cupoMaxPersona;
+        this.fechaDisponibles = fechaDisponibles;
+    }
 
 }

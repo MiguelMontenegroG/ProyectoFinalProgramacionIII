@@ -1,8 +1,0 @@
-usuario1,contrasena1
-usuario2,contrasena2
-mario,miau
-a,a,a,a,a,a
-hola,jaja,a,a,a,a
-
-x,x,x,x,x,x
-y,y,y,y,y,y
