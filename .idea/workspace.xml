@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Cambio de color login">
+    <list default="true" id="3fb100a2-643f-4285-869f-84881558574a" name="Changes" comment="Funcionalidad: Importar a Exel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/x.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Exel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/views/Inicio.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/Inicio.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
