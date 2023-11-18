@@ -25,7 +25,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class AdmPrincipalViewController {
     private final AgenciaViajes agenciaViajes = AgenciaViajes.getInstance();
@@ -37,6 +36,7 @@ public class AdmPrincipalViewController {
     GuiaTuristico guiaTuristicoSeleccionado;
     ObservableList<PaqueteTuristico> listaPaqueteTuristicoData = FXCollections.observableArrayList();
     PaqueteTuristico paqueteTuristicoSeleccionado;
+
     //--------------------------------------------------------------------------//
     @FXML
     private ResourceBundle resources;
@@ -166,6 +166,12 @@ public class AdmPrincipalViewController {
 
     @FXML
     private TableColumn<PaqueteTuristico, String> clAdmPaqueteServicioAdicional;
+
+    @FXML
+    private TableColumn<Destino, String> clAdmPaqueteDestinoNombre;
+
+    @FXML
+    private TableView<Destino> tableAdmPaqueteDestinos;
 
     @FXML
     private TableView<Destino> tableAdmDestino;
@@ -300,10 +306,10 @@ public class AdmPrincipalViewController {
             try {
                 esGuiaTuristicoActualizado = agenciaViajes.actualizarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion(), nombreCompleto, identificacion, correo, password, experiencia, lenguajes);
                 if (esGuiaTuristicoActualizado) {
-                    tableAdmGuias.refresh();
+                    tableAdmPaqueteDestinos.refresh();
                     mostrarMensaje("Notificación", "La guia turistico", "se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposGuias();
-                    tableAdmGuias.getSelectionModel().select(null);
+                    tableAdmPaqueteDestinos.getSelectionModel().select(null);
                 }
             } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion | InformacionRepetirException |
                      InformacionNoExiste e) {
@@ -527,8 +533,8 @@ public class AdmPrincipalViewController {
                 guiaTuristicoEliminado = agenciaViajes.eliminarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion());
                 if (guiaTuristicoEliminado == true) {
                     listaGuiaTuristicoData.remove(guiaTuristicoSeleccionado);
-                    tableAdmGuias.refresh();
-                    tableAdmGuias.getSelectionModel().clearSelection();
+                    tableAdmPaqueteDestinos.refresh();
+                    tableAdmPaqueteDestinos.getSelectionModel().clearSelection();
                     limpiarCamposGuias();
                     mostrarMensaje("Notificacion guia turistico", "Guia turistico eliminado",
                             "La guia turistico se ha eliminado con exito", Alert.AlertType.INFORMATION);
@@ -581,11 +587,11 @@ public class AdmPrincipalViewController {
 
     @FXML
     void nuevoAdmGuiaAction(ActionEvent event) {
-        if (tableAdmGuias.getSelectionModel().getSelectedItem() == null) {
+        if (tableAdmPaqueteDestinos.getSelectionModel().getSelectedItem() == null) {
             mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
         } else {
             limpiarCamposGuias();
-            tableAdmGuias.getSelectionModel().select(null);
+            tableAdmPaqueteDestinos.getSelectionModel().select(null);
         }
     }
 
@@ -636,25 +642,50 @@ public class AdmPrincipalViewController {
         inicializarDestinoView();
         inicializarGuiasView();
         inicializarPaqueteTuristicoView();
+        inicializarPaqueteDestinosView();
+    }
+    private void inicializarPaqueteDestinosView() {
+        this.clAdmPaqueteDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tableAdmPaqueteDestinos.getItems().clear();
+        tableAdmPaqueteDestinos.setItems(getListaDestinoData());
+        tableAdmPaqueteDestinos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                destinoSeleccionado = newSelection;
+                    mostraInformacionPaqueteDestinos(destinoSeleccionado);
+            }
+        });
+    }
+    private void mostraInformacionPaqueteDestinos(Destino destinoSeleccionado) {
+        if (destinoSeleccionado != null) {
+            txtAdmDestinoNombre.setText(destinoSeleccionado.getNombre());
+        }
     }
     private void mostrarEstadisticasReservadoBuscar() {
-        ArrayList<Reserva> reservas = agenciaViajes.getListaReservas();
-        ArrayList<String> nombresDestinos = new ArrayList<>();
-        for (Reserva reserva : reservas) {
+        // Crear un mapa para almacenar la frecuencia de cada destino
+        Map<String, Integer> frecuenciaDestinos = new HashMap<>();
+        // Recorrer la lista de reservas y contar la frecuencia de cada destino
+        for (Reserva reserva : agenciaViajes.getListaReservas()) {
             PaqueteTuristico paquete = reserva.getPaqueteTuristico();
             for (Destino destino : paquete.getListaDestinos()) {
-                nombresDestinos.add(destino.getNombre());
+                String nombreDestino = destino.getNombre();
+                frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
             }
         }
-        List<String> destinosUnicos = nombresDestinos.stream().distinct().toList();
-        XYChart.Series<String, Integer> series = new XYChart.Series<>();
-        for (String destino : destinosUnicos) {
-            int frecuencia = Collections.frequency(nombresDestinos, destino);
-            XYChart.Data<String, Integer> data = new XYChart.Data<>(destino, frecuencia);
-            series.getData().add(data);
+        // Recorrer la lista de paquetes turísticos y contar la frecuencia de cada destino
+        for (PaqueteTuristico paquete : agenciaViajes.getListaPaqueteTuristicos()) {
+            for (Destino destino : paquete.getListaDestinos()) {
+                String nombreDestino = destino.getNombre();
+                frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
+            }
         }
-        destinosReservadoBuscarBarChart.getData().add(series);
+        // Actualizar el gráfico de barras con los datos de frecuencia
+        for (Map.Entry<String, Integer> entry : frecuenciaDestinos.entrySet()) {
+            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            destinosReservadoBuscarBarChart.getData().add(series);
+        }
     }
+
     private void inicializarPaqueteTuristicoView() {
         this.clAdmPaqueteNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         this.clAdmPaqueteServicioAdicional.setCellValueFactory(new PropertyValueFactory<>("serviciosAdicionales"));
@@ -721,9 +752,7 @@ public class AdmPrincipalViewController {
     }
 
     private void inicializarDestinoView() {
-
         this.clAdmDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-
         this.clAdmDestinoCiudad.setCellValueFactory(celda -> {
             if (celda.getValue().getCiudad() != null) {
                 return new SimpleStringProperty(celda.getValue().getCiudad().getNombreCiudad());
@@ -740,6 +769,7 @@ public class AdmPrincipalViewController {
             }
         });
         this.clAdmDestinoDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
         tableAdmDestino.getItems().clear();
         tableAdmDestino.setItems(getListaDestinoData());
         tableAdmDestino.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
@@ -758,11 +788,15 @@ public class AdmPrincipalViewController {
         if (destinoSeleccionado != null) {
             txtAdmDestinoNombre.setText(destinoSeleccionado.getNombre());
 
-            String clima = String.valueOf(destinoSeleccionado.getClima());
-            comboxOpcionesClima.setValue(clima);
+            if (destinoSeleccionado.getClima() != null) {
+                String clima = String.valueOf(destinoSeleccionado.getClima());
+                comboxOpcionesClima.setValue(clima);
+            }
 
-            String ciudad = String.valueOf(destinoSeleccionado.getCiudad());
-            comboxOpcionesCiudad.setValue(ciudad);
+            if (destinoSeleccionado.getCiudad() != null) {
+                String ciudad = String.valueOf(destinoSeleccionado.getCiudad());
+                comboxOpcionesCiudad.setValue(ciudad);
+            }
 
             File file = new File(destinoSeleccionado.getImagenes().get(0));
             String imageUrl = file.toURI().toURL().toString();
@@ -795,7 +829,7 @@ public class AdmPrincipalViewController {
         listaClima.sort(Comparator.comparing(Enum::name));
         ObservableList<String> listaClimaFormateadas = FXCollections.observableArrayList();
         for (Clima clima : listaClima) {
-            String nombreClima = clima.name();
+            String nombreClima = clima.getNombreClima();
             listaClimaFormateadas.add(nombreClima);
         }
         comboxOpcionesClima.setItems(listaClimaFormateadas);
@@ -806,7 +840,7 @@ public class AdmPrincipalViewController {
         listaCiudades.sort(Comparator.comparing(Enum::name));
         ObservableList<String> listaCiudadesFormateadas = FXCollections.observableArrayList();
         for (Ciudades ciudad : listaCiudades) {
-            String nombreCiudad = ciudad.name();
+            String nombreCiudad = ciudad.getNombreCiudad();
             listaCiudadesFormateadas.add(nombreCiudad);
         }
         comboxOpcionesCiudad.setItems(listaCiudadesFormateadas);

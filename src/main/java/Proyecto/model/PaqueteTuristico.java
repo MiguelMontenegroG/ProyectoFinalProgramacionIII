@@ -19,17 +19,16 @@ public class PaqueteTuristico implements Serializable {
     private Double precio;
     private int cupoMaxPersona;
     private LocalDateTime fechaDisponibles;
-
     //-------clase---//
-    private ArrayList<Destino> listaDestinos = new ArrayList<Destino>();
-
-    public PaqueteTuristico(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) {
+    private ArrayList<Destino> listaDestinos;
+    public PaqueteTuristico(String nombre, int duracion, ArrayList<String> serviciosAdicionales,
+                            Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) {
         this.nombre = nombre;
         this.duracion = duracion;
         this.serviciosAdicionales = serviciosAdicionales;
         this.precio = precio;
         this.cupoMaxPersona = cupoMaxPersona;
         this.fechaDisponibles = fechaDisponibles;
+        this.listaDestinos = new ArrayList<>();
     }
-
 }
