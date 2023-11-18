@@ -1,4 +1,4 @@
 
-gfd;BOGOTÁ;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf
-gcd;BOGOTÁ;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf
-porqueCafe;BOGOTÁ;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf
+gfd;CALI;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf
+gcd;CALI;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf
+porqueCafe;CALI;FRIO;[C:\Users\buitr\OneDrive\Imágenes\Imagen de WhatsApp 2023-11-03 a las 19.18.22_b58ebc98.jpg];dfasf

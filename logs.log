@@ -10,3 +10,19 @@ nov. 17, 2023 9:10:19 A.�M. Proyecto.model.AgenciaViajes actualizarGuiaTuristico
 INFORMACI�N: Guia turistico actualizado exitosamente.
 nov. 17, 2023 9:10:30 A.�M. Proyecto.model.AgenciaViajes eliminarGuiaTuristico
 INFORMACI�N: Guia turistico eliminado exitosamente. 45685
+nov 18, 2023 6:18:43 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:21:16 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:23:58 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:23:58 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:25:31 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:29:28 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:38:31 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 18, 2023 6:39:16 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : fdcvx

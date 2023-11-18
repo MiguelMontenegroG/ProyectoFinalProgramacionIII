@@ -274,8 +274,7 @@ public class AdmPrincipalViewController {
                     tableAdmDestino.getSelectionModel().select(null);
                 }
             }
-        } catch (CampoObligatorio | SeleccioneCargar | SeleccionarNoOpcion | InformacionRepetirException |
-                 InformacionNoExiste e) {
+        } catch (CampoObligatorio | SeleccioneCargar | SeleccionarNoOpcion e) {
             mostrarMensaje("Notificación", "El destino no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -311,8 +310,7 @@ public class AdmPrincipalViewController {
                     limpiarCamposGuias();
                     tableAdmPaqueteDestinos.getSelectionModel().select(null);
                 }
-            } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion | InformacionRepetirException |
-                     InformacionNoExiste e) {
+            } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
                 mostrarMensaje("Notificación", "La guia turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
@@ -353,8 +351,7 @@ public class AdmPrincipalViewController {
                     limpiarCamposPaqueteTuristico();
                     tableAdmPaquete.getSelectionModel().select(null);
                 }
-            } catch (CampoNegativo | CampoObligatorio | FechaException | InformacionRepetirException |
-                     InformacionNoExiste e) {
+            } catch (CampoNegativo | CampoObligatorio | FechaException e) {
                 mostrarMensaje("Notificación", "El paquete turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
@@ -386,8 +383,7 @@ public class AdmPrincipalViewController {
                 mostrarMensaje("Notificación", "El destino", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposDestino();
             }
-        } catch (CampoObligatorio | InformacionNoExiste | SeleccionarNoOpcion | SeleccioneCargar |
-                 InformacionRepetirException e) {
+        } catch (CampoObligatorio | InformacionNoExiste | SeleccionarNoOpcion | SeleccioneCargar e) {
             mostrarMensaje("Notificación", "El destino se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -428,8 +424,7 @@ public class AdmPrincipalViewController {
                 mostrarMensaje("Notificación", "La guia turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposGuias();
             }
-        } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion | InformacionRepetirException |
-                 InformacionNoExiste e) {
+        } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
             mostrarMensaje("Notificación", "La guia turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -477,7 +472,7 @@ public class AdmPrincipalViewController {
                 mostrarMensaje("Notificación", "El paquete turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposPaqueteTuristico();
             }
-        } catch (CampoNegativo | FechaException | CampoObligatorio | InformacionRepetirException e) {
+        } catch (CampoNegativo | FechaException | CampoObligatorio e) {
             mostrarMensaje("Notificación", "El paquete turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }

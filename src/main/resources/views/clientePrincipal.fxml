@@ -454,21 +454,97 @@
                                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                                             </effect>
                                         </Separator>
-                                        <Label layoutX="17.0" layoutY="349.0" text="Listado de guías" textFill="WHITE">
+                                        <Label layoutX="474.0" layoutY="57.0" text="Listado de guías" textFill="WHITE">
                                             <font>
                                                 <Font name="Arial Bold" size="24.0" />
                                             </font>
                                         </Label>
-                                        <Separator layoutX="396.0" layoutY="105.0" orientation="VERTICAL" prefHeight="106.0" prefWidth="8.0">
+                                        <Separator layoutX="369.0" layoutY="56.0" orientation="VERTICAL" prefHeight="266.0" prefWidth="0.0">
                                             <effect>
                                                 <ColorAdjust brightness="-1.0" />
                                             </effect>
                                         </Separator>
-                                        <Separator layoutX="213.0" layoutY="363.0" prefHeight="1.0" prefWidth="525.0">
+                                        <Separator layoutX="12.0" layoutY="402.0" prefHeight="0.0" prefWidth="754.0">
                                             <effect>
                                                 <ColorAdjust brightness="-1.0" contrast="-1.0" hue="-1.0" saturation="-1.0" />
                                             </effect>
                                         </Separator>
+                              <Label layoutX="17.0" layoutY="114.0" prefHeight="23.0" prefWidth="155.0" text="Fecha solicitud:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="17.0" layoutY="146.0" prefHeight="9.0" prefWidth="177.0" text="Fecha Planificada:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="17.0" layoutY="81.0" prefHeight="23.0" prefWidth="74.0" text="Cliente:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="17.0" layoutY="178.0" prefHeight="23.0" prefWidth="190.0" text="Cantidad Personas:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="17.0" layoutY="211.0" prefHeight="23.0" prefWidth="171.0" text="paquete turistico:" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <TableView fx:id="tblListadoGuias" layoutX="396.0" layoutY="90.0" prefHeight="242.0" prefWidth="370.0">
+                                <columns>
+                                  <TableColumn fx:id="colNombreGuiaRes" prefWidth="75.0" text="Nombre" />
+                                  <TableColumn fx:id="colCorreoGuiaRes" prefWidth="116.7999267578125" text="Correo" />
+                                    <TableColumn fx:id="colLenguajeRes" prefWidth="100.0" text="Lenguaje" />
+                                    <TableColumn fx:id="colExperienciaRes" prefWidth="73.5999755859375" text="Experiencia" />
+                                </columns>
+                              </TableView>
+                              <Button fx:id="btnAgregarGuiaRes" layoutX="510.0" layoutY="354.0" mnemonicParsing="false" onAction="#agregarGuiaRes" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Agregar guia" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Button fx:id="btnConfirmarReserva" layoutX="110.0" layoutY="354.0" mnemonicParsing="false" onAction="#confirmarReserva" style="-fx-background-color: #000000; -fx-background-radius: 55;" text="Confirmar reserva" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                              <Label layoutX="321.0" layoutY="405.0" text="Destinos" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResCliente" layoutX="91.0" layoutY="81.0" prefHeight="23.0" prefWidth="172.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResFechaSolicitud" layoutX="172.0" layoutY="114.0" prefHeight="23.0" prefWidth="172.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResFechPLanificada" layoutX="197.0" layoutY="146.0" prefHeight="23.0" prefWidth="172.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResCanPersonas" layoutX="207.0" layoutY="178.0" prefHeight="23.0" prefWidth="154.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="lblResPqTuristico" layoutX="188.0" layoutY="211.0" prefHeight="128.0" prefWidth="172.0" textFill="WHITE">
+                                 <font>
+                                    <Font name="Arial Bold" size="20.0" />
+                                 </font>
+                              </Label>
+                              <ImageView fx:id="imgViewDestino1" fitHeight="150.0" fitWidth="200.0" layoutX="46.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgViewDestino2" fitHeight="150.0" fitWidth="200.0" layoutX="296.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
+                              <ImageView fx:id="imgViewDestino3" fitHeight="150.0" fitWidth="200.0" layoutX="548.0" layoutY="472.0" pickOnBounds="true" preserveRatio="true" />
                                     </children>
                                 </AnchorPane>
                             </children>
