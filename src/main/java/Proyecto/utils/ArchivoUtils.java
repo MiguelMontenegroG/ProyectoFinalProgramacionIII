@@ -161,7 +161,7 @@ public class ArchivoUtils {
         try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
             String linea;
             while ((linea = br.readLine()) != null) {
-                // Supongamos que cada línea tiene el formato: nombre,precio
+                // Supongamos que cada línea tiene el formato: nombre, precio
                 String[] partes = linea.split(";");
                 if (partes.length == 5) {
                     String nombre = partes[0];

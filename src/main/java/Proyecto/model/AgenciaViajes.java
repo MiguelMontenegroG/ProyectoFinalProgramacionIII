@@ -521,7 +521,7 @@ public class AgenciaViajes {
         return false;
     }
     public void agregarDestino(String nombre, double precio) {
-        Destino nuevoDestino = new Destino("kjk" ,Ciudades.APARTADÓ, "jjl",null ,Clima.CALIDO);
+        Destino nuevoDestino = new Destino("kjk" ,Ciudades.APARTADO, "jjl",null ,Clima.CALIDO);
         listaDestinos.add(nuevoDestino);
     }
 

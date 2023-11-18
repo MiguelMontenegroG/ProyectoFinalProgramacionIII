@@ -50,10 +50,16 @@ public class ClientePrincipalController implements Initializable {
     private Button btnActualizarCliente;
 
     @FXML
+    private Button btnAgregarGuiaRes;
+
+    @FXML
     private Button btnBuscarpq;
 
     @FXML
     private Button btnCerrarSesion;
+
+    @FXML
+    private Button btnConfirmarReserva;
 
     @FXML
     private Button btnEstadistica;
@@ -75,7 +81,6 @@ public class ClientePrincipalController implements Initializable {
 
     @FXML
     private Button btnVerImagenes;
-
     @FXML
     private ComboBox<Ciudades> cbxCiudad;
 
@@ -108,6 +113,16 @@ public class ClientePrincipalController implements Initializable {
 
     @FXML
     private TableColumn<PaqueteTuristico, String> colServicioAdicional;
+
+    @FXML
+    private TableColumn<?, ?> colCorreoGuiaRes;
+
+    @FXML
+    private TableColumn<?, ?> colExperienciaRes;
+    @FXML
+    private TableColumn<?, ?> colLenguajeRes;
+    @FXML
+    private TableColumn<?, ?> colNombreGuiaRes;
     private ObservableList<PaqueteTuristico> paqueteTuristicos = FXCollections.observableArrayList();
 
 
@@ -116,6 +131,29 @@ public class ClientePrincipalController implements Initializable {
 
     @FXML
     private ImageView imagenView;
+
+    @FXML
+    private ImageView imgViewDestino1;
+
+    @FXML
+    private ImageView imgViewDestino2;
+
+    @FXML
+    private ImageView imgViewDestino3;
+    @FXML
+    private Label lblResCanPersonas;
+
+    @FXML
+    private Label lblResCliente;
+
+    @FXML
+    private Label lblResFechPLanificada;
+
+    @FXML
+    private Label lblResFechaSolicitud;
+
+    @FXML
+    private Label lblResPqTuristico;
 
     @FXML
     private DatePicker ldFechaIda;
@@ -266,6 +304,11 @@ public class ClientePrincipalController implements Initializable {
 
     @FXML
     void reservarPq(ActionEvent event) {
+        perfilForm.setVisible(false);
+        reservaForm.setVisible(true);
+        paquetesForm.setVisible(false);
+        misViajesForm.setVisible(false);
+
 
     }
 
@@ -469,6 +512,13 @@ public class ClientePrincipalController implements Initializable {
         // Comparar con la fecha de ida del paquete
         return fechaIdaPaquete != null && fechaIdaPaquete.toLocalDate().isEqual(ChronoLocalDate.from(fechaIda));
     }
+
+    public void confirmarReserva(ActionEvent actionEvent) {
+    }
+
+    public void agregarGuiaRes(ActionEvent actionEvent) {
+    }
+    //------------------------ reservaForm-------------------------------------------------------------------------
 
 }
 

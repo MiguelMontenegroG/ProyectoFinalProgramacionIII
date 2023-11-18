@@ -82,14 +82,21 @@ public class Persistencia {
             ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_GUIAS);
             for (String linea : lineas) {
                 String[] partes = linea.split(";");
-                Lenguajes lenguaje = Lenguajes.obtenerNombreLenguajes(partes[5]);
-                personas.add(new GuiaTuristico(
-                        partes[0],
-                        partes[1],
-                        partes[2],
-                        partes[3],
-                        Integer.parseInt(partes[4]),
-                        lenguaje));
+
+                // Verifica si hay suficientes partes
+                if (partes.length >= 6) {
+                    Lenguajes lenguaje = Lenguajes.obtenerNombreLenguajes(partes[5]);
+                    personas.add(new GuiaTuristico(
+                            partes[0],
+                            partes[1],
+                            partes[2],
+                            partes[3],
+                            Integer.parseInt(partes[4]),
+                            lenguaje));
+                } else {
+                    // Imprime un mensaje de error si no hay suficientes partes
+                    System.err.println("Error: La línea no tiene suficientes partes para crear una instancia de GuiaTuristico");
+                }
             }
         } catch (IOException e) {
             log.severe(e.getMessage());
@@ -98,24 +105,34 @@ public class Persistencia {
     }
 
     public static ArrayList<Destino> leerDestinos() {
-        ArrayList<Destino> destino = new ArrayList<>();
+        ArrayList<Destino> destinos = new ArrayList<>();
         try {
             ArrayList<String> lineas = ArchivoUtils.leerArchivoScanner(RUTA_ARCHIVO_DESTINO);
             for (String linea : lineas) {
                 String[] partes = linea.split(";");
-                String imagePath = partes[3].substring(1, partes[3].length() - 1);
-                ArrayList<String> imagenes = new ArrayList<>(Collections.singletonList(imagePath));
-                destino.add(new Destino(
-                        partes[0],
-                        Ciudades.obtenerNombreCiudades(partes[1]),
-                        partes[4],
-                        imagenes,
-                        Clima.obtenerNombreClima(partes[2])));
+
+                // Imprimir información de depuración
+                System.out.println("Debug - Linea: " + linea + ", Partes: " + Arrays.toString(partes));
+
+                // Verifica si hay suficientes partes
+                if (partes.length >= 4) {
+                    String imagePath = partes[3].substring(1, partes[3].length() - 1);
+                    ArrayList<String> imagenes = new ArrayList<>(Collections.singletonList(imagePath));
+                    destinos.add(new Destino(
+                            partes[0],
+                            Ciudades.obtenerNombreCiudades(partes[1]),
+                            partes[4],
+                            imagenes,
+                            Clima.obtenerNombreClima(partes[2])));
+                } else {
+                    // Imprime un mensaje de error si no hay suficientes partes
+                    System.err.println("Error: La línea no tiene suficientes partes para crear una instancia de Destino");
+                }
             }
         } catch (IOException e) {
             log.severe(e.getMessage());
         }
-        return destino;
+        return destinos;
     }
 
     public static ArrayList<PaqueteTuristico> leerPaqueteTuristicos() {
@@ -138,4 +155,5 @@ public class Persistencia {
         }
         return paqueteTuristico;
     }
+
 }
