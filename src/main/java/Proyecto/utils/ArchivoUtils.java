@@ -1,5 +1,9 @@
 package Proyecto.utils;
 
+import Proyecto.enums.Ciudades;
+import Proyecto.enums.Clima;
+import Proyecto.model.Destino;
+
 import java.beans.XMLDecoder;
 import java.beans.XMLEncoder;
 import java.io.BufferedReader;
@@ -150,6 +154,31 @@ public class ArchivoUtils {
         decoder.close();
 
         return objeto;
+    }
+    public static List<Destino> leerDestinosDesdeArchivo(String rutaArchivo) {
+        List<Destino> destinos = new ArrayList<>();
+
+        try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivo))) {
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                // Supongamos que cada línea tiene el formato: nombre,precio
+                String[] partes = linea.split(";");
+                if (partes.length == 5) {
+                    String nombre = partes[0];
+                    Ciudades ciudad = Ciudades.valueOf(partes[1]);
+                    Clima clima = Clima.valueOf(partes[2]);
+                    String descripcion =partes[4];
+
+                    // Crear instancia de Destino y agregar a la lista
+                destinos.add(new Destino(nombre , ciudad ,descripcion , clima));
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            // Manejo de errores, podrías mostrar una alerta o realizar otras acciones según sea necesario
+        }
+
+        return destinos;
     }
 
 }

@@ -22,4 +22,12 @@ public class Destino implements Serializable {
     private ArrayList<String> imagenes;
     private Clima clima;
 
+
+    public Destino(String nombre, Ciudades ciudad,String descripcion, Clima clima) {
+        this.nombre = nombre;
+        this.ciudad = ciudad;
+        this .descripcion = descripcion;
+        this.clima = clima;
+
+    }
 }
