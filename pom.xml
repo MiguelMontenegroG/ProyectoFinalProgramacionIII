@@ -22,6 +22,7 @@
                 <version>0.0.8</version>
                 <configuration>
                     <mainClass>Proyecto.agenciaViajes.Aplicacion</mainClass>
+                    <executable>C:\Users\JLRH\.jdks\temurin-17.0.8.1\bin\java</executable>
                 </configuration>
             </plugin>
         </plugins>

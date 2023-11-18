@@ -8,7 +8,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @ToString
-public class Persona{
+public abstract class Persona implements Serializable{
 
     private String nombreCompleto;
     private String identificacion;

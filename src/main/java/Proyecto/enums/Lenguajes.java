@@ -4,21 +4,21 @@ import lombok.Getter;
 import lombok.Setter;
 
 public enum Lenguajes {
-    INGLÉS("Inglés"),
-    CHINO_MANDARÍN("Chino Mandarín"),
+    INGLES("Ingles"),
+    CHINO_MANDARIN("Chino Mandarin"),
     HINDI("Hindi"),
     ESPAÑOL("Español"),
-    FRANCÉS("Francés"),
-    ÁRABE_ESTÁNDAR_MODERNO("Árabe Estándar Moderno"),
-    BENGALÍ("Bengalí"),
-    PORTUGUÉS("Portugués"),
+    FRANCES("Frances"),
+    ARABE_ESTANDAR_MODERNO("Arabe Estandar Moderno"),
+    BENGALI("Bengali"),
+    PORTUGUES("Portugues"),
     RUSO("Ruso"),
     URDU("Urdu"),
     INDONESIO("Indonesio"),
-    ALEMÁN("Alemán"),
-    JAPONÉS("Japonés"),
-    MARATÍ("Maratí"),
-    TELUGÚ("Telugú"),
+    ALEMAN("Aleman"),
+    JAPONES("Japones"),
+    MARATI("Marati"),
+    TELUGU("Telugu"),
     TURCO("Turco"),
     TAMIL("Tamil"),
     CHINO_YUE("Chino Yue"),
@@ -26,27 +26,27 @@ public enum Lenguajes {
     TAGALO("Tagalo"),
     CHINO_WU("Chino Wu"),
     COREANO("Coreano"),
-    PERSA_IRANÍ("Persa Iraní"),
+    PERSA_IRANI("Persa Irani"),
     HAUSA("Hausa"),
-    ÁRABE_EGIPCIO("Árabe Egipcio"),
+    ARABE_EGIPCIO("Arabe Egipcio"),
     SUAJILI("Suajili"),
-    JAVANÉS("Javanés"),
+    JAVANES("Javanes"),
     ITALIANO("Italiano"),
-    PANYABÍ_OCCIDENTAL("Panyabí Occidental"),
-    CANARÉS("Canarés"),
+    PANYABI_OCCIDENTAL("Panyabi Occidental"),
+    CANARES("Canares"),
     GUYARATI("Guyarati"),
-    TAILANDÉS("Tailandés"),
-    AMÁRICO("Amárico"),
+    TAILANDES("Tailandes"),
+    AMARICO("Amarico"),
     BHOSHPURI("Bhoshpuri"),
-    PANYABÍ("Panyabí"),
-    CHINO_MǏN_NÁN("Chino Mǐn Nán"),
+    PANYABI("Panyabi"),
+    CHINO_MIN_NAN("Chino Min Nan"),
     CHINO_JIN("Chino Jin"),
     YORUBA("Yoruba"),
     CHINO_HAKKA("Chino Hakka"),
     BIRMANO("Birmano"),
-    ÁRABE_SUDANÉS("Árabe Sudanés"),
+    ARABE_SUDANES("Arabe Sudanes"),
     POLACO("Polaco"),
-    ÁRABE_ARGELINO("Árabe Argelino"),
+    ARABE_ARGELINO("Arabe Argelino"),
     LINGALA("Lingala");
 
     @Setter
@@ -62,6 +62,4 @@ public enum Lenguajes {
         }
         return null;
     }
-
-
 }

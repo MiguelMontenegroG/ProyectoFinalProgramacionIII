@@ -1,6 +1,5 @@
 package Proyecto.controllers;
 
-
 import Proyecto.enums.Ciudades;
 import Proyecto.enums.Clima;
 import Proyecto.enums.Lenguajes;
@@ -9,6 +8,7 @@ import Proyecto.model.*;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -17,8 +17,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
+import javafx.scene.chart.BarChart;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -34,6 +36,7 @@ public class AdmPrincipalViewController {
     GuiaTuristico guiaTuristicoSeleccionado;
     ObservableList<PaqueteTuristico> listaPaqueteTuristicoData = FXCollections.observableArrayList();
     PaqueteTuristico paqueteTuristicoSeleccionado;
+
     //--------------------------------------------------------------------------//
     @FXML
     private ResourceBundle resources;
@@ -165,6 +168,12 @@ public class AdmPrincipalViewController {
     private TableColumn<PaqueteTuristico, String> clAdmPaqueteServicioAdicional;
 
     @FXML
+    private TableColumn<Destino, String> clAdmPaqueteDestinoNombre;
+
+    @FXML
+    private TableView<Destino> tableAdmPaqueteDestinos;
+
+    @FXML
     private TableView<Destino> tableAdmDestino;
 
     @FXML
@@ -216,6 +225,15 @@ public class AdmPrincipalViewController {
     private DatePicker dataAdmPaqueteFechaDisponible;
 
     @FXML
+    private BarChart<String, Integer> destinosReservadoBuscarBarChart;
+
+    @FXML
+    private BarChart<?, ?> guiarMejorPuntuadosBarChart;
+
+    @FXML
+    private BarChart<?, ?> paqueteSuelenReservarBarChart;
+
+    @FXML
     void SeleccionarImagAdmDestinoAction(ActionEvent event) {
         FileChooser fileChooser = new FileChooser();
         File file = fileChooser.showOpenDialog(null);
@@ -256,7 +274,8 @@ public class AdmPrincipalViewController {
                     tableAdmDestino.getSelectionModel().select(null);
                 }
             }
-        } catch (CampoObligatorio | SeleccioneCargar | SeleccionarNoOpcion e) {
+        } catch (CampoObligatorio | SeleccioneCargar | SeleccionarNoOpcion | InformacionRepetirException |
+                 InformacionNoExiste e) {
             mostrarMensaje("Notificación", "El destino no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -270,7 +289,7 @@ public class AdmPrincipalViewController {
     private void actualizarAdmGuia() {
         String nombreCompleto = txtAdmGuiaNombreCompleto.getText();
         String identificacion = txtAdmGuiaIdentificacion.getText();
-        String usuario = txtAdmGuiaCorreoElectronico.getText();
+        String correo = txtAdmGuiaCorreoElectronico.getText();
         String password = txtAdmGuiaContrasenia.getText();
         String valorLenguajes = comboxOpcionesLenjuajes.getValue();
 
@@ -285,14 +304,15 @@ public class AdmPrincipalViewController {
         boolean esGuiaTuristicoActualizado;
         if (guiaTuristicoSeleccionado != null) {
             try {
-                esGuiaTuristicoActualizado = agenciaViajes.actualizarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion(), nombreCompleto, identificacion, usuario, password, experiencia, lenguajes);
+                esGuiaTuristicoActualizado = agenciaViajes.actualizarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion(), nombreCompleto, identificacion, correo, password, experiencia, lenguajes);
                 if (esGuiaTuristicoActualizado) {
-                    tableAdmGuias.refresh();
+                    tableAdmPaqueteDestinos.refresh();
                     mostrarMensaje("Notificación", "La guia turistico", "se ha actualizado con éxito", Alert.AlertType.INFORMATION);
                     limpiarCamposGuias();
-                    tableAdmGuias.getSelectionModel().select(null);
+                    tableAdmPaqueteDestinos.getSelectionModel().select(null);
                 }
-            } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
+            } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion | InformacionRepetirException |
+                     InformacionNoExiste e) {
                 mostrarMensaje("Notificación", "La guia turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
@@ -333,7 +353,8 @@ public class AdmPrincipalViewController {
                     limpiarCamposPaqueteTuristico();
                     tableAdmPaquete.getSelectionModel().select(null);
                 }
-            } catch (CampoNegativo | CampoObligatorio | FechaException e) {
+            } catch (CampoNegativo | CampoObligatorio | FechaException | InformacionRepetirException |
+                     InformacionNoExiste e) {
                 mostrarMensaje("Notificación", "El paquete turistico no se ha actualizado", e.getMessage(), Alert.AlertType.ERROR);
             }
         }
@@ -365,7 +386,8 @@ public class AdmPrincipalViewController {
                 mostrarMensaje("Notificación", "El destino", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposDestino();
             }
-        } catch (CampoObligatorio | InformacionNoExiste | SeleccionarNoOpcion | SeleccioneCargar e) {
+        } catch (CampoObligatorio | InformacionNoExiste | SeleccionarNoOpcion | SeleccioneCargar |
+                 InformacionRepetirException e) {
             mostrarMensaje("Notificación", "El destino se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -387,7 +409,7 @@ public class AdmPrincipalViewController {
     private void agragarAdmGuia() {
         String nombreCompleto = txtAdmGuiaNombreCompleto.getText();
         String identificacion = txtAdmGuiaIdentificacion.getText();
-        String usuario = txtAdmGuiaCorreoElectronico.getText();
+        String correo = txtAdmGuiaCorreoElectronico.getText();
         String password = txtAdmGuiaContrasenia.getText();
         String valorLenguajes = comboxOpcionesLenjuajes.getValue();
         int experiencia = 0;
@@ -400,13 +422,14 @@ public class AdmPrincipalViewController {
         }
         try {
             GuiaTuristico guiaTuristico;
-            guiaTuristico = agenciaViajes.crearGuiaTuristico(nombreCompleto, identificacion, usuario, password, experiencia, lenguajes);
+            guiaTuristico = agenciaViajes.crearGuiaTuristico(nombreCompleto, identificacion, correo, password, experiencia, lenguajes);
             if (guiaTuristico != null) {
                 listaGuiaTuristicoData.add(guiaTuristico);
                 mostrarMensaje("Notificación", "La guia turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposGuias();
             }
-        } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion e) {
+        } catch (CampoNegativo | CampoObligatorio | SeleccionarNoOpcion | InformacionRepetirException |
+                 InformacionNoExiste e) {
             mostrarMensaje("Notificación", "La guia turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
     }
@@ -454,10 +477,9 @@ public class AdmPrincipalViewController {
                 mostrarMensaje("Notificación", "El paquete turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposPaqueteTuristico();
             }
-        } catch (CampoNegativo | FechaException | CampoObligatorio e) {
+        } catch (CampoNegativo | FechaException | CampoObligatorio | InformacionRepetirException e) {
             mostrarMensaje("Notificación", "El paquete turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
-
     }
 
     private void limpiarCamposPaqueteTuristico() {
@@ -497,7 +519,11 @@ public class AdmPrincipalViewController {
 
     @FXML
     void eliminarAdmGuiaAction(ActionEvent event) {
-        eliminarAdmGuia();
+        if (guiaTuristicoSeleccionado == null) {
+            mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
+        } else {
+            eliminarAdmGuia();
+        }
     }
 
     private void eliminarAdmGuia() {
@@ -507,8 +533,8 @@ public class AdmPrincipalViewController {
                 guiaTuristicoEliminado = agenciaViajes.eliminarGuiaTuristico(guiaTuristicoSeleccionado.getIdentificacion());
                 if (guiaTuristicoEliminado == true) {
                     listaGuiaTuristicoData.remove(guiaTuristicoSeleccionado);
-                    tableAdmGuias.refresh();
-                    tableAdmGuias.getSelectionModel().clearSelection();
+                    tableAdmPaqueteDestinos.refresh();
+                    tableAdmPaqueteDestinos.getSelectionModel().clearSelection();
                     limpiarCamposGuias();
                     mostrarMensaje("Notificacion guia turistico", "Guia turistico eliminado",
                             "La guia turistico se ha eliminado con exito", Alert.AlertType.INFORMATION);
@@ -522,7 +548,11 @@ public class AdmPrincipalViewController {
 
     @FXML
     void eliminarAdmPaqueteAction(ActionEvent event) {
-        eliminarAdmPaquete();
+        if (paqueteTuristicoSeleccionado == null) {
+            mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
+        } else {
+            eliminarAdmPaquete();
+        }
     }
 
     private void eliminarAdmPaquete() {
@@ -547,20 +577,32 @@ public class AdmPrincipalViewController {
 
     @FXML
     void nuevoAdmDestinoAction(ActionEvent event) {
-        limpiarCamposDestino();
-        tableAdmDestino.getSelectionModel().select(null);
+        if (tableAdmDestino.getSelectionModel().getSelectedItem() == null) {
+            mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
+        } else {
+            limpiarCamposDestino();
+            tableAdmDestino.getSelectionModel().select(null);
+        }
     }
 
     @FXML
     void nuevoAdmGuiaAction(ActionEvent event) {
-        limpiarCamposGuias();
-        tableAdmGuias.getSelectionModel().select(null);
+        if (tableAdmPaqueteDestinos.getSelectionModel().getSelectedItem() == null) {
+            mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
+        } else {
+            limpiarCamposGuias();
+            tableAdmPaqueteDestinos.getSelectionModel().select(null);
+        }
     }
 
     @FXML
     void nuevoAdmPaqueteAction(ActionEvent event) {
-        limpiarCamposPaqueteTuristico();
-        tableAdmPaquete.getSelectionModel().select(null);
+        if (tableAdmPaquete.getSelectionModel().getSelectedItem() == null) {
+            mostrarMensaje("Error", "No Selection", "Primero seleccionar y vuelva intento", Alert.AlertType.ERROR);
+        } else {
+            limpiarCamposPaqueteTuristico();
+            tableAdmPaquete.getSelectionModel().select(null);
+        }
     }
 
     @FXML
@@ -595,10 +637,53 @@ public class AdmPrincipalViewController {
 
     @FXML
     void initialize() {
+        mostrarEstadisticasReservadoBuscar();
         mostrarCombox();
         inicializarDestinoView();
         inicializarGuiasView();
         inicializarPaqueteTuristicoView();
+        inicializarPaqueteDestinosView();
+    }
+    private void inicializarPaqueteDestinosView() {
+        this.clAdmPaqueteDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        tableAdmPaqueteDestinos.getItems().clear();
+        tableAdmPaqueteDestinos.setItems(getListaDestinoData());
+        tableAdmPaqueteDestinos.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
+                destinoSeleccionado = newSelection;
+                    mostraInformacionPaqueteDestinos(destinoSeleccionado);
+            }
+        });
+    }
+    private void mostraInformacionPaqueteDestinos(Destino destinoSeleccionado) {
+        if (destinoSeleccionado != null) {
+            txtAdmDestinoNombre.setText(destinoSeleccionado.getNombre());
+        }
+    }
+    private void mostrarEstadisticasReservadoBuscar() {
+        // Crear un mapa para almacenar la frecuencia de cada destino
+        Map<String, Integer> frecuenciaDestinos = new HashMap<>();
+        // Recorrer la lista de reservas y contar la frecuencia de cada destino
+        for (Reserva reserva : agenciaViajes.getListaReservas()) {
+            PaqueteTuristico paquete = reserva.getPaqueteTuristico();
+            for (Destino destino : paquete.getListaDestinos()) {
+                String nombreDestino = destino.getNombre();
+                frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
+            }
+        }
+        // Recorrer la lista de paquetes turísticos y contar la frecuencia de cada destino
+        for (PaqueteTuristico paquete : agenciaViajes.getListaPaqueteTuristicos()) {
+            for (Destino destino : paquete.getListaDestinos()) {
+                String nombreDestino = destino.getNombre();
+                frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
+            }
+        }
+        // Actualizar el gráfico de barras con los datos de frecuencia
+        for (Map.Entry<String, Integer> entry : frecuenciaDestinos.entrySet()) {
+            XYChart.Series<String, Integer> series = new XYChart.Series<>();
+            series.getData().add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+            destinosReservadoBuscarBarChart.getData().add(series);
+        }
     }
 
     private void inicializarPaqueteTuristicoView() {
@@ -617,8 +702,9 @@ public class AdmPrincipalViewController {
             }
         });
     }
+
     private void mostraInformacionPaqueteTuristico(PaqueteTuristico paqueteTuristicoSeleccionado) {
-        if (paqueteTuristicoSeleccionado!=null){
+        if (paqueteTuristicoSeleccionado != null) {
             txtAdmPaqueteNombre.setText(paqueteTuristicoSeleccionado.getNombre());
             txtAdmPaqueteServicioAdicionales.setText(String.valueOf(paqueteTuristicoSeleccionado.getServiciosAdicionales()));
             txtAdmPaqueteDuracion.setText(String.valueOf(paqueteTuristicoSeleccionado.getDuracion()));
@@ -627,10 +713,17 @@ public class AdmPrincipalViewController {
             dataAdmPaqueteFechaDisponible.setValue(LocalDate.from(paqueteTuristicoSeleccionado.getFechaDisponibles()));
         }
     }
+
     private void inicializarGuiasView() {
         this.clAdmGuiasNombreCompleto.setCellValueFactory(new PropertyValueFactory<>("nombreCompleto"));
         this.clAdmGuiasIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
-        this.clAdmGuiasLenguajes.setCellValueFactory(celda -> new SimpleStringProperty(celda.getValue().getLenguaje().getNombreLenguajes()));
+        this.clAdmGuiasLenguajes.setCellValueFactory(celda -> {
+            if (celda.getValue().getLenguaje() != null) {
+                return new SimpleStringProperty(celda.getValue().getLenguaje().getNombreLenguajes());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
         this.clAdmGuiasExperiencia.setCellValueFactory(new PropertyValueFactory<>("experiencia"));
         this.clAdmGuiasCorreoElectronico.setCellValueFactory(new PropertyValueFactory<>("correo"));
         this.clAdmGuiasContrasenia.setCellValueFactory(new PropertyValueFactory<>("password"));
@@ -648,41 +741,66 @@ public class AdmPrincipalViewController {
         if (guiaTuristicoSeleccionado != null) {
             txtAdmGuiaNombreCompleto.setText(guiaTuristicoSeleccionado.getNombreCompleto());
             txtAdmGuiaIdentificacion.setText(guiaTuristicoSeleccionado.getIdentificacion());
-            String lenguaje = String.valueOf(guiaTuristicoSeleccionado.getLenguaje());
-            comboxOpcionesLenjuajes.setValue(lenguaje);
+            if (guiaTuristicoSeleccionado.getLenguaje() != null) {
+                String lenguaje = guiaTuristicoSeleccionado.getLenguaje().getNombreLenguajes();
+                comboxOpcionesLenjuajes.setValue(lenguaje);
+            }
             txtAdmGuiaExperencia.setText(String.valueOf(guiaTuristicoSeleccionado.getExperiencia()));
             txtAdmGuiaCorreoElectronico.setText(guiaTuristicoSeleccionado.getCorreo());
             txtAdmGuiaContrasenia.setText(guiaTuristicoSeleccionado.getPassword());
         }
     }
-    
+
     private void inicializarDestinoView() {
         this.clAdmDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-        this.clAdmDestinoCiudad.setCellValueFactory(celda -> new SimpleStringProperty(celda.getValue().getCiudad().getNombreCiudad()));
-        this.clAdmDestinoClima.setCellValueFactory(celda -> new SimpleStringProperty(celda.getValue().getClima().getNombreClima()));
+        this.clAdmDestinoCiudad.setCellValueFactory(celda -> {
+            if (celda.getValue().getCiudad() != null) {
+                return new SimpleStringProperty(celda.getValue().getCiudad().getNombreCiudad());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
+
+        this.clAdmDestinoClima.setCellValueFactory(celda -> {
+            if (celda.getValue().getClima() != null) {
+                return new SimpleStringProperty(celda.getValue().getClima().getNombreClima());
+            } else {
+                return new SimpleStringProperty("");
+            }
+        });
         this.clAdmDestinoDescripcion.setCellValueFactory(new PropertyValueFactory<>("descripcion"));
+
         tableAdmDestino.getItems().clear();
         tableAdmDestino.setItems(getListaDestinoData());
         tableAdmDestino.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 destinoSeleccionado = newSelection;
-                mostraInformacionDestino(destinoSeleccionado);
+                try {
+                    mostraInformacionDestino(destinoSeleccionado);
+                } catch (MalformedURLException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
     }
 
-    private void mostraInformacionDestino(Destino destinoSeleccionado) {
-
+    private void mostraInformacionDestino(Destino destinoSeleccionado) throws MalformedURLException {
         if (destinoSeleccionado != null) {
             txtAdmDestinoNombre.setText(destinoSeleccionado.getNombre());
 
-            String clima = String.valueOf(destinoSeleccionado.getClima());
-            comboxOpcionesClima.setValue(clima);
+            if (destinoSeleccionado.getClima() != null) {
+                String clima = String.valueOf(destinoSeleccionado.getClima());
+                comboxOpcionesClima.setValue(clima);
+            }
 
-            String ciudad = String.valueOf(destinoSeleccionado.getCiudad());
-            comboxOpcionesCiudad.setValue(ciudad);
+            if (destinoSeleccionado.getCiudad() != null) {
+                String ciudad = String.valueOf(destinoSeleccionado.getCiudad());
+                comboxOpcionesCiudad.setValue(ciudad);
+            }
 
-            imagenView.setImage(new Image(destinoSeleccionado.getImagenes().get(0)));
+            File file = new File(destinoSeleccionado.getImagenes().get(0));
+            String imageUrl = file.toURI().toURL().toString();
+            imagenView.setImage(new Image(imageUrl));
 
             String descripcion = destinoSeleccionado.getDescripcion();
             txtAdmDestinoDescripcion.setText(descripcion);
@@ -700,7 +818,7 @@ public class AdmPrincipalViewController {
         listaLenguaje.sort(Comparator.comparing(Enum::name));
         ObservableList<String> listaLenguajesFormateadas = FXCollections.observableArrayList();
         for (Lenguajes lenguajes : listaLenguaje) {
-            String nombreLenguajes = lenguajes.name().replace("_", " ");
+            String nombreLenguajes = lenguajes.getNombreLenguajes();
             listaLenguajesFormateadas.add(nombreLenguajes);
         }
         comboxOpcionesLenjuajes.setItems(listaLenguajesFormateadas);
@@ -711,7 +829,7 @@ public class AdmPrincipalViewController {
         listaClima.sort(Comparator.comparing(Enum::name));
         ObservableList<String> listaClimaFormateadas = FXCollections.observableArrayList();
         for (Clima clima : listaClima) {
-            String nombreClima = clima.name().replace("_", " ");
+            String nombreClima = clima.getNombreClima();
             listaClimaFormateadas.add(nombreClima);
         }
         comboxOpcionesClima.setItems(listaClimaFormateadas);
@@ -722,7 +840,7 @@ public class AdmPrincipalViewController {
         listaCiudades.sort(Comparator.comparing(Enum::name));
         ObservableList<String> listaCiudadesFormateadas = FXCollections.observableArrayList();
         for (Ciudades ciudad : listaCiudades) {
-            String nombreCiudad = ciudad.name().replace("_", " ");
+            String nombreCiudad = ciudad.getNombreCiudad();
             listaCiudadesFormateadas.add(nombreCiudad);
         }
         comboxOpcionesCiudad.setItems(listaCiudadesFormateadas);

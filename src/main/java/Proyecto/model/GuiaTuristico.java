@@ -5,14 +5,13 @@ import lombok.*;
 @NoArgsConstructor
 @Setter
 @Getter
-@ToString(callSuper=true)
 public class GuiaTuristico extends Persona{
 
     private int experiencia;
     private Lenguajes lenguaje;
 
-    public GuiaTuristico(String nombreCompleto, String identificacion, String usuario, String pasword, int experiencia, Lenguajes lenguaje) {
-        super(nombreCompleto, identificacion, usuario, pasword);
+    public GuiaTuristico(String nombreCompleto, String identificacion, String correo, String password, int experiencia, Lenguajes lenguaje) {
+        super(nombreCompleto, identificacion, correo, password);
         this.experiencia = experiencia;
         this.lenguaje = lenguaje;
     }
