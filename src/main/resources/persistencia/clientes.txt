@@ -3,11 +3,7 @@ usuario2,contrasena2
 mario,miau
 a,a,a,a,a,a
 hola,jaja,a,a,a,a
-
 x,x,x,x,x,x
 y,y,y,y,y,y
-12,12,kevinw,,,
-1234,1234,jkfds,sdf,43,vds
-12,12,kv,kv,kv,kv
-105,105,kevin buitron,hgkjlñk{fdslgd,hjhk,jhk
-1058962116,1058962116,kevin,kevinBuitron@,310358,axm
+x,x,xx,miguela.montenegrog@uqvirtual.edu.co,x,
+a,a,a,miguela.montenegrog@uqvirtual.edu.co,a,a

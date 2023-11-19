@@ -2,6 +2,7 @@ package Proyecto.controllers;
 
 import Proyecto.model.Cliente;
 import Proyecto.model.Persona;
+import Proyecto.model.Correos;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import Proyecto.model.Exel;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -117,6 +119,7 @@ LoginController {
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
             mostrarAlerta("Error", "Error al leer el archivo", "Ocurrió un error al intentar leer el archivo.");
