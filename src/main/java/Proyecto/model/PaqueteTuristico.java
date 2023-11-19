@@ -20,7 +20,8 @@ public class PaqueteTuristico implements Serializable {
     private int cupoMaxPersona;
     private LocalDateTime fechaDisponibles;
     //-------clase---//
-    private ArrayList<Destino> listaDestinos;
+    @Getter
+    private ArrayList<Destino> destinos;
     public PaqueteTuristico(String nombre, int duracion, ArrayList<String> serviciosAdicionales,
                             Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) {
         this.nombre = nombre;
@@ -29,6 +30,13 @@ public class PaqueteTuristico implements Serializable {
         this.precio = precio;
         this.cupoMaxPersona = cupoMaxPersona;
         this.fechaDisponibles = fechaDisponibles;
-        this.listaDestinos = new ArrayList<>();
+        this.destinos = new ArrayList<>();
     }
+    public void agregarDestino(Destino destino) {
+        if (destinos == null) {
+            destinos = new ArrayList<>();
+        }
+        destinos.add(destino);
+    }
+
 }

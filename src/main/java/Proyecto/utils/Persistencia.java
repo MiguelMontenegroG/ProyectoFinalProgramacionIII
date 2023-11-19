@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Log
 public class Persistencia {
@@ -60,19 +61,27 @@ public class Persistencia {
 
     public static void escribirPaqueteTuristico(PaqueteTuristico paqueteTuristico) {
         try {
+            List<Destino> destinosSeleccionados = paqueteTuristico.getDestinos(); // Obtener todos los destinos asociados al paquete
+
+            String destinosString = destinosSeleccionados.stream()
+                    .map(Destino::getNombre)
+                    .collect(Collectors.joining(","));
+
             String linea =
                     paqueteTuristico.getNombre() + ";" +
                             paqueteTuristico.getDuracion() + ";" +
                             paqueteTuristico.getServiciosAdicionales() + ";" +
                             paqueteTuristico.getPrecio() + ";" +
                             paqueteTuristico.getCupoMaxPersona() + ";" +
-                            paqueteTuristico.getFechaDisponibles();
+                            paqueteTuristico.getFechaDisponibles() + ";" +
+                            destinosString; // Agrega la lista de destinos
+
             ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_PAQUETES, List.of(linea), true);
         } catch (IOException e) {
             log.severe(e.getMessage());
         }
-
     }
+
 
     //----------------------leer---------------------------//
 

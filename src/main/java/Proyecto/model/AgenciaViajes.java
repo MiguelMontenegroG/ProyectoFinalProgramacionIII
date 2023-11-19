@@ -10,7 +10,7 @@ import lombok.*;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -412,7 +412,7 @@ public class AgenciaViajes {
      * @throws CampoObligatorio Se lanza cuando se deja un campo obligatorio vacío.
      * @throws FechaException   Se lanza cuando la fecha introducida no es válida.
      */
-    public PaqueteTuristico crearPaquete(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) throws CampoNegativo, CampoObligatorio, FechaException {
+    public PaqueteTuristico crearPaquete(String nombre, int duracion, ArrayList<String> serviciosAdicionales, Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles, List<Destino> destinosSeleccionados) throws CampoNegativo, CampoObligatorio, FechaException {
         PaqueteTuristico nuevoPaqueteTuristico = null;
         if (validarPaqueteTuristicoCampoObligatorio(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles)) {
             nuevoPaqueteTuristico = new PaqueteTuristico();
@@ -422,12 +422,15 @@ public class AgenciaViajes {
             nuevoPaqueteTuristico.setPrecio(precio);
             nuevoPaqueteTuristico.setCupoMaxPersona(cupoMaxPersona);
             nuevoPaqueteTuristico.setFechaDisponibles(fechaDisponibles);
+            nuevoPaqueteTuristico.setDestinos((ArrayList<Destino>) destinosSeleccionados); // Establece la lista de destinos en el paquete
             getListaPaqueteTuristicos().add(nuevoPaqueteTuristico);
             LOGGER.log(Level.INFO, "El paquete turistico se ha creado exitosamente : " + nombre);
             Persistencia.escribirPaqueteTuristico(nuevoPaqueteTuristico);
         }
         return nuevoPaqueteTuristico;
     }
+
+
 
     /**
      * Este método valida los campos de un paquete turístico. Si alguno de los campos no cumple con las condiciones establecidas,

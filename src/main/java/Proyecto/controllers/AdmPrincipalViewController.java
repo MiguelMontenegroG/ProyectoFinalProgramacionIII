@@ -464,18 +464,25 @@ public class AdmPrincipalViewController {
         if (dataAdmPaqueteFechaDisponible.getValue() != null) {
             fechaDisponibles = dataAdmPaqueteFechaDisponible.getValue().atStartOfDay();
         }
+
+
+// Obtener los destinos seleccionados directamente desde la TableView
+        ObservableList<Destino> destinosSeleccionados = tableAdmPaqueteDestinos.getSelectionModel().getSelectedItems();
+
         try {
             PaqueteTuristico paqueteTuristico;
-            paqueteTuristico = agenciaViajes.crearPaquete(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles);
+            paqueteTuristico = agenciaViajes.crearPaquete(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles, new ArrayList<>(destinosSeleccionados));
             if (paqueteTuristico != null) {
                 listaPaqueteTuristicoData.add(paqueteTuristico);
-                mostrarMensaje("Notificación", "El paquete turistico", "se ha creado con éxitosamente", Alert.AlertType.INFORMATION);
+                mostrarMensaje("Notificación", "El paquete turístico", "se ha creado exitosamente", Alert.AlertType.INFORMATION);
                 limpiarCamposPaqueteTuristico();
             }
         } catch (CampoNegativo | FechaException | CampoObligatorio e) {
-            mostrarMensaje("Notificación", "El paquete turistico se no ha creado", e.getMessage(), Alert.AlertType.ERROR);
+            mostrarMensaje("Notificación", "El paquete turístico no se ha creado", e.getMessage(), Alert.AlertType.ERROR);
         }
+
     }
+
 
     private void limpiarCamposPaqueteTuristico() {
         txtAdmPaquetePrecio.setText("");
@@ -638,6 +645,8 @@ public class AdmPrincipalViewController {
         inicializarGuiasView();
         inicializarPaqueteTuristicoView();
         inicializarPaqueteDestinosView();
+        tableAdmPaqueteDestinos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
     }
     private void inicializarPaqueteDestinosView() {
         this.clAdmPaqueteDestinoNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
@@ -661,14 +670,14 @@ public class AdmPrincipalViewController {
         // Recorrer la lista de reservas y contar la frecuencia de cada destino
         for (Reserva reserva : agenciaViajes.getListaReservas()) {
             PaqueteTuristico paquete = reserva.getPaqueteTuristico();
-            for (Destino destino : paquete.getListaDestinos()) {
+            for (Destino destino : paquete.getDestinos()) {
                 String nombreDestino = destino.getNombre();
                 frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
             }
         }
         // Recorrer la lista de paquetes turísticos y contar la frecuencia de cada destino
         for (PaqueteTuristico paquete : agenciaViajes.getListaPaqueteTuristicos()) {
-            for (Destino destino : paquete.getListaDestinos()) {
+            for (Destino destino : paquete.getDestinos()) {
                 String nombreDestino = destino.getNombre();
                 frecuenciaDestinos.put(nombreDestino, frecuenciaDestinos.getOrDefault(nombreDestino, 0) + 1);
             }

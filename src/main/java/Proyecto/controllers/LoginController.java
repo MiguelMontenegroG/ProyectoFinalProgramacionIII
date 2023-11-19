@@ -146,6 +146,10 @@ LoginController {
                         try {
                             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/views/clientePrincipal.fxml"));
                             Parent root = fxmlLoader.load();
+                            ClientePrincipalController clientePrincipalController = fxmlLoader.getController();
+                            // Pasa el cliente autenticado al controlador
+                            clientePrincipalController.initData(clienteEnArchivo);
+
                             Stage stage = new Stage();
                             stage.setScene(new Scene(root));
                             stage.show();
