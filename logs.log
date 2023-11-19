@@ -26,75 +26,41 @@ nov 18, 2023 6:38:31 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
 INFO: Se crea una nueva instancia de AgenciaViajes
 nov 18, 2023 6:39:16 P. M. Proyecto.model.AgenciaViajes crearPaquete
 INFO: El paquete turistico se ha creado exitosamente : fdcvx
-nov. 18, 2023 8:28:50 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 18, 2023 8:31:26 P.?M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
-GRAVE: El nombre es obligatorio de campo
-nov. 18, 2023 8:31:30 P.?M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
-GRAVE: El nombre es obligatorio de campo
-nov. 18, 2023 8:31:33 P.?M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
-GRAVE: El duracion estos no sean negativos o esta vacio
-nov. 18, 2023 8:31:44 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : f
-nov. 18, 2023 9:11:06 P.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
-GRAVE: Por favor, selecciona una opci?n para  la ciudad.
-nov. 18, 2023 9:34:50 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 18, 2023 10:02:58 P.?M. Proyecto.model.AgenciaViajes eliminarDestino
-INFORMACI?N: Destino eliminado exitosamente. porqueCafe
-nov. 18, 2023 10:03:18 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : dfgdfg
-nov. 18, 2023 10:48:13 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : prueba
-nov. 18, 2023 10:48:36 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : prueba
-nov. 18, 2023 10:48:46 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : prueba
-nov. 18, 2023 10:59:48 P.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
-GRAVE: Por favor, Seleccione un archivo para cargar.
-nov. 18, 2023 11:01:05 P.?M. Proyecto.model.AgenciaViajes crearDestino
-INFORMACI?N: El destino se ha creado exitosamente : Salitre
-nov. 18, 2023 11:17:24 P.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
-GRAVE: Por favor, selecciona una opci?n para  la ciudad.
-nov. 18, 2023 11:17:30 P.?M. Proyecto.model.AgenciaViajes crearDestino
-INFORMACI?N: El destino se ha creado exitosamente : Salitre
-nov. 18, 2023 11:20:31 P.?M. Proyecto.model.AgenciaViajes eliminarPaqueteTuristico
-INFORMACI?N: El paquete turistico eliminado exitosamente. prueba
-nov. 18, 2023 11:21:13 P.?M. Proyecto.model.AgenciaViajes eliminarPaqueteTuristico
-INFORMACI?N: El paquete turistico eliminado exitosamente. prueba
-nov. 18, 2023 11:34:23 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 18, 2023 11:35:21 P.?M. Proyecto.model.AgenciaViajes crearGuiaTuristico
-INFORMACI?N: La guia turistico se ha creado exitosamente : 4545
-nov. 18, 2023 11:35:29 P.?M. Proyecto.model.AgenciaViajes eliminarGuiaTuristico
-INFORMACI?N: Guia turistico eliminado exitosamente. 4545
-nov. 18, 2023 11:37:40 P.?M. Proyecto.model.AgenciaViajes crearPaquete
-INFORMACI?N: El paquete turistico se ha creado exitosamente : parque
-nov. 18, 2023 11:40:56 P.?M. Proyecto.model.AgenciaViajes validarDestinoCampoObligatorio
-GRAVE: Por favor, Seleccione un archivo para cargar.
-nov. 18, 2023 11:41:52 P.?M. Proyecto.model.AgenciaViajes crearDestino
-INFORMACI?N: El destino se ha creado exitosamente : parque san pio
-nov. 19, 2023 2:54:17 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 2:54:48 P.?M. Proyecto.model.AgenciaViajes crearDestino
-INFORMACI?N: El destino se ha creado exitosamente : sdsa
-nov. 19, 2023 2:55:18 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 2:55:48 P.?M. Proyecto.model.AgenciaViajes crearDestino
-INFORMACI?N: El destino se ha creado exitosamente : kmcdl
-nov. 19, 2023 2:56:11 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 3:04:19 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 3:05:58 P.?M. Proyecto.model.AgenciaViajes actualizarGuiaTuristico
-INFORMACI?N: Guia turistico actualizado exitosamente.
-nov. 19, 2023 3:08:33 P.?M. Proyecto.model.AgenciaViajes actualizarGuiaTuristico
-INFORMACI?N: Guia turistico actualizado exitosamente.
-nov. 19, 2023 3:17:50 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 3:19:11 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 5:19:34 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
-nov. 19, 2023 6:22:21 P.?M. Proyecto.model.AgenciaViajes registrarArchivoLogger
-INFORMACI?N: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 4:50:47 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 4:51:13 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : fd
+nov 19, 2023 4:58:49 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:03:13 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:03:34 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : er
+nov 19, 2023 5:13:43 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:15:17 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:15:56 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : rfwed
+nov 19, 2023 5:20:50 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:21:21 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : hjk
+nov 19, 2023 5:29:06 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 5:31:37 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 6:15:28 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 6:15:45 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : khk
+nov 19, 2023 6:16:30 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 6:17:12 P. M. Proyecto.model.AgenciaViajes validarPaqueteTuristicoCampoObligatorio
+SEVERE: La fecha no puede ser anterior al día actual
+nov 19, 2023 6:17:18 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : aracataca
+nov 19, 2023 6:18:10 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : puta
+nov 19, 2023 6:19:17 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
