@@ -7,14 +7,9 @@
     <list default="true" id="2eb263a6-2cd9-49d1-9bdf-d3b7d8e7f8fd" name="Changes" comment=".">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.log.lck" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/InicioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/InicioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/destinos.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/guias.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/guias.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
