@@ -5,6 +5,8 @@ import Proyecto.enums.Clima;
 import Proyecto.enums.Lenguajes;
 import Proyecto.exceptions.*;
 import Proyecto.model.*;
+
+import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,6 +20,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.stage.FileChooser;
 import javafx.scene.chart.BarChart;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.net.MalformedURLException;
@@ -46,6 +49,9 @@ public class AdmPrincipalViewController {
 
     @FXML
     private Button btnAdmDestinoActualizar;
+
+    @FXML
+    private Button btnSalir;
 
     @FXML
     private Button btnAdmDestinoAgragar;
@@ -609,7 +615,10 @@ public class AdmPrincipalViewController {
 
     @FXML
     void cerrarSesionAdmAction(ActionEvent event) {
+        Stage stage = (Stage) btnCerrarSesion.getScene().getWindow();
+        stage.close();
 
+        Platform.exit();
     }
 
     @FXML
@@ -887,6 +896,12 @@ public class AdmPrincipalViewController {
         alert.setContentText(mensaje);
         Optional<ButtonType> action = alert.showAndWait();
         return action.get() == ButtonType.OK;
+    }
+
+    @FXML
+    private void generarExel(ActionEvent event) {
+        Exel.agregarClientesExel();
+        mostrarMensaje("Exel", "Exel de clientes generado", "", Alert.AlertType.CONFIRMATION);
     }
 
 }
