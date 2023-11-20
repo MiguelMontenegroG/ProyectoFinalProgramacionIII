@@ -6,6 +6,8 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Setter
 @Getter
@@ -22,6 +24,7 @@ public class PaqueteTuristico implements Serializable {
     //-------clase---//
     @Getter
     private ArrayList<Destino> destinos;
+
     public PaqueteTuristico(String nombre, int duracion, ArrayList<String> serviciosAdicionales,
                             Double precio, int cupoMaxPersona, LocalDateTime fechaDisponibles) {
         this.nombre = nombre;
@@ -32,6 +35,8 @@ public class PaqueteTuristico implements Serializable {
         this.fechaDisponibles = fechaDisponibles;
         this.destinos = new ArrayList<>();
     }
+
+
     public void agregarDestino(Destino destino) {
         if (destinos == null) {
             destinos = new ArrayList<>();
@@ -39,4 +44,15 @@ public class PaqueteTuristico implements Serializable {
         destinos.add(destino);
     }
 
+    public void setDestinos(ArrayList<Destino> destinos) {
+
+        this.destinos = destinos;
+    }
+
+    public String getDestinosComoCadena() {
+        return destinos.stream().map(Destino::getNombre).collect(Collectors.joining(", "));
+    }
+
 }
+
+
