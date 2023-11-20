@@ -64,3 +64,21 @@ nov 19, 2023 6:18:10 P. M. Proyecto.model.AgenciaViajes crearPaquete
 INFO: El paquete turistico se ha creado exitosamente : puta
 nov 19, 2023 6:19:17 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
 INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 6:51:58 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 6:52:19 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : jh
+nov 19, 2023 7:23:11 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 7:27:44 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 7:41:31 P. M. Proyecto.model.AgenciaViajes eliminarPaqueteTuristico
+SEVERE: El paquete turistico no se puede eliminar
+nov 19, 2023 9:02:03 P. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 19, 2023 9:02:38 P. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : jkl
+nov 20, 2023 12:45:32 A. M. Proyecto.model.AgenciaViajes registrarArchivoLogger
+INFO: Se crea una nueva instancia de AgenciaViajes
+nov 20, 2023 12:46:11 A. M. Proyecto.model.AgenciaViajes crearPaquete
+INFO: El paquete turistico se ha creado exitosamente : ukumary

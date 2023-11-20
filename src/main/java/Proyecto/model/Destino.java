@@ -30,4 +30,7 @@ public class Destino implements Serializable {
         this.clima = clima;
 
     }
+
+    public Destino(String nombreDestino) {
+    }
 }

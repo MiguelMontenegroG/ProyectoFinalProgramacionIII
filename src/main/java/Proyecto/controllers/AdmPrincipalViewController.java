@@ -6,6 +6,7 @@ import Proyecto.enums.Lenguajes;
 import Proyecto.exceptions.*;
 import Proyecto.model.*;
 
+import Proyecto.utils.ArchivoUtils;
 import javafx.application.Platform;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -23,6 +24,7 @@ import javafx.scene.chart.BarChart;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -175,6 +177,7 @@ public class AdmPrincipalViewController {
 
     @FXML
     private TableColumn<Destino, String> clAdmPaqueteDestinoNombre;
+
 
     @FXML
     private TableView<Destino> tableAdmPaqueteDestinos;
@@ -654,7 +657,9 @@ public class AdmPrincipalViewController {
         inicializarGuiasView();
         inicializarPaqueteTuristicoView();
         inicializarPaqueteDestinosView();
+        inicializartblPaquetesAdmin();
         tableAdmPaqueteDestinos.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
 
     }
     private void inicializarPaqueteDestinosView() {
@@ -903,5 +908,64 @@ public class AdmPrincipalViewController {
         Exel.agregarClientesExel();
         mostrarMensaje("Exel", "Exel de clientes generado", "", Alert.AlertType.CONFIRMATION);
     }
+    private void inicializartblPaquetesAdmin() {
+
+        clAdmPaqueteNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        clAdmPaqueteDuracion.setCellValueFactory(new PropertyValueFactory<>("duracion"));
+        clAdmPaqueteServicioAdicional.setCellValueFactory(new PropertyValueFactory<>("serviciosAdicionales"));
+        clAdmPaquetePrecio.setCellValueFactory(new PropertyValueFactory<>("precio"));
+        clAdmPaqueteCupo.setCellValueFactory(new PropertyValueFactory<>("cupoMaxPersona"));
+        clAdmPaqueteFechaDisponibles.setCellValueFactory(new PropertyValueFactory<>("fechaDisponibles"));
+
+
+    // Lee los datos de los paquetes turísticos desde el archivo
+    cargarPaquetesDesdeArchivo("src/main/resources/persistencia/paquetes.txt");
+
+    // Asigna la lista a la TableView
+        tableAdmPaquete.setItems(listaPaqueteTuristicoData);
+    }
+
+    private void cargarPaquetesDesdeArchivo(String rutaArchivoPq) {
+        try {
+            List<String> lineasPaquetes = ArchivoUtils.leerArchivoBufferedReader(rutaArchivoPq);
+
+            for (String linea : lineasPaquetes) {
+                // Asumiendo que tus paquetes están separados por comas o algún otro delimitador
+                String[] partes = linea.split(";");
+
+                for (int i = 0; i < partes.length; i++) {
+                    System.out.println("Parte " + i + ": " + partes[i]);
+                }
+
+
+                // Asegúrate de que haya suficientes partes para construir un PaqueteTuristico
+                if (partes.length >= 6) {
+                    int cupoMaxPersona = Integer.parseInt(partes[4]);
+                    int duracion = Integer.parseInt(partes[1]);
+                    LocalDateTime fechaDisponibles = LocalDateTime.parse(partes[5]); // Ajusta el formato según tu necesidad
+                    String nombre = partes[0];
+                    double precio = Double.parseDouble(partes[3]);
+                    ArrayList<String> serviciosAdicionales = new ArrayList<>(Arrays.asList(partes[2].split(";")));
+
+                    // Crea un nuevo PaqueteTuristico y agrégalo a la lista
+                    PaqueteTuristico paquete = new PaqueteTuristico(nombre, duracion, serviciosAdicionales, precio, cupoMaxPersona, fechaDisponibles);
+                    listaPaqueteTuristicoData.add(paquete);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            mostrarAlerta("Error de Lectura", "Hubo un error al leer el archivo de paquetes.", Alert.AlertType.ERROR);
+        }
+    }
+
+
+    private void mostrarAlerta(String titulo, String mensaje, Alert.AlertType tipo) {
+        Alert alert = new Alert(tipo);
+        alert.setTitle(titulo);
+        alert.setHeaderText(null);
+        alert.setContentText(mensaje);
+        alert.showAndWait();
+    }
+
 
 }

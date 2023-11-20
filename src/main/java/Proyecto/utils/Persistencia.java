@@ -2,11 +2,9 @@ package Proyecto.utils;
 
 import Proyecto.enums.Ciudades;
 import Proyecto.enums.Clima;
+import Proyecto.enums.EstadoReserva;
 import Proyecto.enums.Lenguajes;
-import Proyecto.model.Destino;
-import Proyecto.model.GuiaTuristico;
-import Proyecto.model.PaqueteTuristico;
-import Proyecto.model.Persona;
+import Proyecto.model.*;
 import lombok.extern.java.Log;
 
 import java.io.IOException;
@@ -25,6 +23,7 @@ public class Persistencia {
     public static final String RUTA_ARCHIVO_DESTINO = "src/main/resources/persistencia/destinos.txt";
     public static final String RUTA_ARCHIVO_GUIAS = "src/main/resources/persistencia/guias.txt";
     public static final String RUTA_ARCHIVO_PAQUETES = "src/main/resources/persistencia/paquetes.txt";
+    private static final String RUTA_ARCHIVO_RESERVAS ="src/main/resources/persistencia/reservas.txt" ;
 
     //    public static final String RUTA_ARCHIVO_ALQUILER = "src/main/resources/persistencia/alquiler.ser";
 
@@ -81,6 +80,22 @@ public class Persistencia {
             log.severe(e.getMessage());
         }
     }
+    public static void escribirReserva(Reserva reserva) {
+        try {
+            String linea = reserva.getFechaSolicitud() + ";" +
+                    reserva.getFechaPlanificadaViaje() + ";" +
+                    reserva.getClienteInvolucrado() + ";" +
+                    reserva.getCantidadPersonaViejan() + ";" +
+                    reserva.getPaqueteTuristicoSeleccionado() + ";" +
+                    reserva.getEstandoReserva() + ";" +
+                    reserva.getGuiaTutistico();
+            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_RESERVAS, List.of(linea), true);
+        } catch (IOException e) {
+            log.severe(e.getMessage());
+        }
+    }
+
+
 
 
     //----------------------leer---------------------------//
@@ -163,6 +178,68 @@ public class Persistencia {
             log.severe(e.getMessage());
         }
         return paqueteTuristico;
+    }
+    public static void actualizarReserva(Reserva reservaActualizada) {
+        try {
+            // Leer todas las reservas actuales desde el archivo
+            List<String> lineasReservas = ArchivoUtils.leerArchivoBufferedReader(RUTA_ARCHIVO_RESERVAS);
+
+            // Crear una lista para almacenar las reservas actualizadas
+            List<String> nuevasLineasReservas = new ArrayList<>();
+
+            // Iterar sobre las líneas del archivo y actualizar la reserva específica
+            for (String linea : lineasReservas) {
+                String[] partes = linea.split(";");
+                if (partes.length == 7) {
+                    LocalDateTime fechaSolicitud = LocalDateTime.parse(partes[0]);
+                    LocalDateTime fechaPlanificadaViaje = LocalDateTime.parse(partes[1]);
+                    String clienteInvolucrado = partes[2];
+                    int cantidadPersonaViejan = Integer.parseInt(partes[3]);
+                    String paqueteTuristicoSeleccionado = partes[4];
+                    EstadoReserva estadoReserva = EstadoReserva.valueOf(partes[5]);
+                    String guiaTuristico = partes[6];
+
+                    // Verificar si esta es la reserva que estamos actualizando
+                    if (esLaReservaQueEstamosBuscando(reservaActualizada, fechaSolicitud, fechaPlanificadaViaje,
+                            clienteInvolucrado, cantidadPersonaViejan, paqueteTuristicoSeleccionado, estadoReserva, guiaTuristico)) {
+                        // Actualizar la reserva con los nuevos datos
+                        String nuevaLinea = reservaActualizada.getFechaSolicitud() + ";" +
+                                reservaActualizada.getFechaPlanificadaViaje() + ";" +
+                                reservaActualizada.getClienteInvolucrado() + ";" +
+                                reservaActualizada.getCantidadPersonaViejan() + ";" +
+                                reservaActualizada.getPaqueteTuristicoSeleccionado() + ";" +
+                                reservaActualizada.getEstandoReserva() + ";" +
+                                reservaActualizada.getGuiaTutistico();
+
+                        nuevasLineasReservas.add(nuevaLinea);
+                    } else {
+                        // Mantener la línea original si no es la reserva que estamos actualizando
+                        nuevasLineasReservas.add(linea);
+                    }
+                }
+            }
+
+            // Escribir las reservas actualizadas en el archivo
+            ArchivoUtils.escribirArchivoBufferedWriter(RUTA_ARCHIVO_RESERVAS, nuevasLineasReservas, false);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Manejar el error según tus necesidades (mostrar mensaje, lanzar excepción, etc.)
+        }
+    }
+
+    // Método auxiliar para verificar si una línea del archivo corresponde a la reserva que estamos actualizando
+    private static boolean esLaReservaQueEstamosBuscando(Reserva reservaActualizada, LocalDateTime fechaSolicitud,
+                                                         LocalDateTime fechaPlanificadaViaje, String clienteInvolucrado,
+                                                         int cantidadPersonaViejan, String paqueteTuristicoSeleccionado,
+                                                         EstadoReserva estadoReserva, String guiaTuristico) {
+        return reservaActualizada.getFechaSolicitud().equals(fechaSolicitud) &&
+                reservaActualizada.getFechaPlanificadaViaje().equals(fechaPlanificadaViaje) &&
+                reservaActualizada.getClienteInvolucrado().equals(clienteInvolucrado) &&
+                reservaActualizada.getCantidadPersonaViejan() == cantidadPersonaViejan &&
+                reservaActualizada.getPaqueteTuristicoSeleccionado().equals(paqueteTuristicoSeleccionado) &&
+                reservaActualizada.getEstandoReserva() == estadoReserva &&
+                reservaActualizada.getGuiaTutistico().equals(guiaTuristico);
     }
 
 }
