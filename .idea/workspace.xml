@@ -5,20 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2eb263a6-2cd9-49d1-9bdf-d3b7d8e7f8fd" name="Changes" comment=".">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2023_7_54_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2023_7_54_a__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2023_7_56_a__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_16_11_2023_7_56_a__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.log" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/logs.log.1" beforeDir="false" afterPath="$PROJECT_DIR$/logs.log.1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/AdmPrincipalViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/AgenciaViajes.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/PaqueteTuristico.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/PaqueteTuristico.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/utils/Persistencia.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/utils/Persistencia.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/clientes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/paquetes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/admPrincipal.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/ClientePrincipalController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/controllers/RegistroController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Proyecto/model/Correos.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Proyecto/model/Correos.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/calificacionDestino.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/calificacionDestino.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/calificacionGuia.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/persistencia/calificacionGuia.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/persistencia/datos.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/views/clientePrincipal.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,23 +50,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "dvBuitron",
-    "last_opened_file_path": "C:/Users/buitr/OneDrive/Escritorio/ProyectoFinalProgramacionIII/ProyectoFinalProgramacionIIIcopia",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dvBuitron&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/buitr/OneDrive/Escritorio/ProyectoFinalProgramacionIII/ProyectoFinalProgramacionIIIcopia&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunAnythingCache">
     <option name="myCommands">
       <command value="$PROJECT_DIR$" />

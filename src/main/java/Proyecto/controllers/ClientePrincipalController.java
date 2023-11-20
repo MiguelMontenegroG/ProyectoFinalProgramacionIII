@@ -7,10 +7,7 @@ import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.chrono.ChronoLocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 import Proyecto.enums.Ciudades;
 import Proyecto.enums.Clima;
@@ -19,6 +16,7 @@ import Proyecto.model.Cliente;
 import Proyecto.model.Destino;
 import Proyecto.model.PaqueteTuristico;
 import Proyecto.utils.ArchivoUtils;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -187,6 +185,14 @@ public class ClientePrincipalController implements Initializable {
 
     @FXML
     private TextField txtTelefonoPerfil;
+
+    @FXML
+    private Button btnCalificarGuia;
+    @FXML
+    private Button btnMisViajes;
+
+    @FXML
+    private Button btnCalificarLugar;
     private ObservableList<PaqueteTuristico> listaPaqueteTuristicos = FXCollections.observableArrayList();
     @FXML
     void filtDestino(ActionEvent event) {
@@ -292,10 +298,16 @@ public class ClientePrincipalController implements Initializable {
             paquetesForm.setVisible(true);
             misViajesForm.setVisible(false);
         } else if (event.getSource() == btnReservas) {
-            perfilForm.setVisible(true);
-            reservaForm.setVisible(false);
+            perfilForm.setVisible(false);
+            reservaForm.setVisible(true);
             paquetesForm.setVisible(false);
             misViajesForm.setVisible(false);
+        }
+        else if (event.getSource() == btnMisViajes) {
+            perfilForm.setVisible(false);
+            reservaForm.setVisible(false);
+            paquetesForm.setVisible(false);
+            misViajesForm.setVisible(true);
         }
 
 
@@ -520,7 +532,138 @@ public class ClientePrincipalController implements Initializable {
     }
     //------------------------ reservaForm-------------------------------------------------------------------------
 
+    String rutaArchivoLugar = "src\\main\\resources\\persistencia\\destinos.txt";
+    String rutaArchivoCalificacionDestino = "src/main/resources/persistencia/calificacionDestino.txt";
+    String rutaArchivoGuia = "src\\main\\resources\\persistencia\\guias.txt";
+    String rutaArchivoCalificacionGuia = "src/main/resources/persistencia/calificacionGuia.txt";
+    @FXML
+    public void calificarGuia(ActionEvent actionEvent) {
+        Platform.runLater(() -> {
+                    List<String> opciones = new ArrayList<>();
+                    opciones.add("5 Estrellas");
+                    opciones.add("4 Estrellas");
+                    opciones.add("3 Estrellas");
+                    opciones.add("2 Estrellas");
+                    opciones.add("1 Estrellas");
+
+                    // Diálogo para seleccionar una de las cinco opciones
+                    ChoiceDialog<String> dialogOpciones = new ChoiceDialog<>("", opciones);
+                    dialogOpciones.setTitle("Calificacion");
+                    dialogOpciones.setHeaderText("Seleccione una opción");
+                    dialogOpciones.setContentText("Opciones:");
+
+                    Optional<String> resultadoOpcion = dialogOpciones.showAndWait();
+                    String opcionElegida = resultadoOpcion.orElse("");
+
+                    // Leer el archivo de texto y extraer las opciones
+                    ArrayList<String> lineasArchivo = null;
+                    try {
+                        lineasArchivo = ArchivoUtils.leerArchivoScanner(rutaArchivoGuia);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    List<String> opcionesLugar = new ArrayList<>();
+                    for (String linea : lineasArchivo) {
+                        String[] partes = linea.split(";");
+                        if (partes.length > 0) {
+                            opcionesLugar.add(partes[0]);
+                        }
+                    }
+
+                    // Diálogo para seleccionar un lugar
+                    ChoiceDialog<String> dialogLugar = new ChoiceDialog<>("", opcionesLugar);
+                    dialogLugar.setTitle("Selecciónel guia");
+                    dialogLugar.setHeaderText("Seleccione el guia de su viaje");
+                    dialogLugar.setContentText("Guia:");
+
+                    Optional<String> resultadoLugar = dialogLugar.showAndWait();
+                    String lugarElegido = resultadoLugar.orElse("");
+
+                    // Diálogo para escribir un comentario
+                    TextInputDialog dialogComentario = new TextInputDialog();
+                    dialogComentario.setTitle("Agregar comentario");
+                    dialogComentario.setHeaderText("Escriba un comentario");
+                    dialogComentario.setContentText("Comentario:");
+
+                    Optional<String> resultadoComentario = dialogComentario.showAndWait();
+                    String comentario = resultadoComentario.orElse("");
+
+                    String datosAGuardar = opcionElegida + ";" + lugarElegido + ";" + comentario;            List<String> datosParaGuardar = Collections.singletonList(datosAGuardar);
+                    try {
+                        ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivoCalificacionGuia, datosParaGuardar, true);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+                    System.out.println("Datos guardados en calificacionGuia.txt");
+        });
+    }
+
+    @FXML
+    public void calificarLugar(ActionEvent actionEvent) {
+        Platform.runLater(() -> {
+            List<String> opciones = new ArrayList<>();
+            opciones.add("5 Estrellas");
+            opciones.add("4 Estrellas");
+            opciones.add("3 Estrellas");
+            opciones.add("2 Estrellas");
+            opciones.add("1 Estrellas");
+
+            // Diálogo para seleccionar una de las cinco opciones
+            ChoiceDialog<String> dialogOpciones = new ChoiceDialog<>("", opciones);
+            dialogOpciones.setTitle("Calificacion");
+            dialogOpciones.setHeaderText("Seleccione una opción");
+            dialogOpciones.setContentText("Opciones:");
+
+            Optional<String> resultadoOpcion = dialogOpciones.showAndWait();
+            String opcionElegida = resultadoOpcion.orElse("");
+
+            // Leer el archivo de texto y extraer las opciones
+            ArrayList<String> lineasArchivo = null;
+            try {
+                lineasArchivo = ArchivoUtils.leerArchivoScanner(rutaArchivoLugar);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            List<String> opcionesLugar = new ArrayList<>();
+            for (String linea : lineasArchivo) {
+                String[] partes = linea.split(";");
+                if (partes.length > 0) {
+                    opcionesLugar.add(partes[0]);
+                }
+            }
+
+            // Diálogo para seleccionar un lugar
+            ChoiceDialog<String> dialogLugar = new ChoiceDialog<>("", opcionesLugar);
+            dialogLugar.setTitle("Selección de lugar");
+            dialogLugar.setHeaderText("Seleccione un lugar");
+            dialogLugar.setContentText("Lugar:");
+
+            Optional<String> resultadoLugar = dialogLugar.showAndWait();
+            String lugarElegido = resultadoLugar.orElse("");
+
+            // Diálogo para escribir un comentario
+            TextInputDialog dialogComentario = new TextInputDialog();
+            dialogComentario.setTitle("Agregar comentario");
+            dialogComentario.setHeaderText("Escriba un comentario");
+            dialogComentario.setContentText("Comentario:");
+
+            Optional<String> resultadoComentario = dialogComentario.showAndWait();
+            String comentario = resultadoComentario.orElse("");
+
+            String datosAGuardar = opcionElegida + ";" + lugarElegido + ";" + comentario;List<String> datosParaGuardar = Collections.singletonList(datosAGuardar);
+            try {
+                ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivoCalificacionDestino, datosParaGuardar, true);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+            System.out.println("Datos guardados en calificacionDestino.txt");
+        });
+
+    }
 }
+
 
 
 

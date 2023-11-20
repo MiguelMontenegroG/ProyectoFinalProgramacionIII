@@ -45,8 +45,8 @@ public class Correos {
         try {
             MimeMessage message = new MimeMessage(session);
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo, true));
-            message.setSubject("Codigo de verificación");
-            message.setText("Hola, su código de verificación es: " + codigo);
+            message.setSubject("Codigo de verificacion");
+            message.setText("Hola, su codigo de verificacion es: " + codigo);
             System.out.println("sending...");
             Transport.send(message);
             System.out.println("Sent message successfully....");
@@ -100,7 +100,7 @@ public class Correos {
             MimeMessage message = new MimeMessage(session);
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo, true));
             message.setSubject("Cuenta Creada");
-            message.setText("¡Hola "+ nombre + ", su cuenta a sido creada con exito!");
+            message.setText("Hola "+ nombre + ", su cuenta a sido creada con exito!");
             System.out.println("sending...");
             Transport.send(message);
             System.out.println("Sent message successfully....");
@@ -110,4 +110,14 @@ public class Correos {
 
         }
     }
+    public static boolean validarContrasenia(String contrasenia) {
+        boolean uppercase = contrasenia.matches(".*[A-Z].*");
+        boolean lowercase = contrasenia.matches(".*[a-z].*");
+        boolean digit = contrasenia.matches(".*\\d.*");
+        boolean specialChar = contrasenia.matches(".*[^A-Za-z0-9].*");
+        boolean length = contrasenia.length() >= 8;
+
+        return uppercase && lowercase && digit && specialChar && length;
+    }
+
 }

@@ -78,40 +78,46 @@ public class RegistroController {
         String direccion = direcciontf.getText();
 
         if (!usuario.isEmpty() && !contrasena.isEmpty() && !nombreCompleto.isEmpty() && !correo.isEmpty() && !telefono.isEmpty() && !correo.isEmpty()) {
-            mostrarAlertaPositiva("Confirmación de correo", "Confirmación de correo", "Revisa tu correo, te hemos enviado un codigo de verificacón");
-            String codigo = Correos.generarCombinacion();
-            Correos.EnviarCorreoComprobacion(correo, codigo);
-            TextInputDialog cuadroComprobante = new TextInputDialog();
-            cuadroComprobante.setTitle("");
-            cuadroComprobante.setHeaderText("Ingrese el codigo enviado al correo");
-            cuadroComprobante.setContentText("Codigo: ");
-            Optional<String> resultado = cuadroComprobante.showAndWait();
-            String codigoRecibido = resultado.orElse("");
-            if (codigoRecibido.equals(codigo)) {
-                try {
-                    List<String> datosActuales = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
+            if (Correos.validarContrasenia(contrasena) == true){
+                mostrarAlertaPositiva("Confirmación de correo", "Confirmación de correo", "Presiona aceptar para recibir un correo con un codigo de confirmación");
+                String codigo = Correos.generarCombinacion();
+                Correos.EnviarCorreoComprobacion(correo, codigo);
+                TextInputDialog cuadroComprobante = new TextInputDialog();
+                cuadroComprobante.setTitle("");
+                cuadroComprobante.setHeaderText("Ingrese el codigo enviado al correo");
+                cuadroComprobante.setContentText("Codigo: ");
+                Optional<String> resultado = cuadroComprobante.showAndWait();
+                String codigoRecibido = resultado.orElse("");
+                if (codigoRecibido.equals(codigo)) {
+                    try {
+                        List<String> datosActuales = ArchivoUtils.leerArchivoBufferedReader(rutaArchivo);
 
-                    String nuevoDato = usuario + "," + contrasena + "," + nombreCompleto + "," + correo + "," + telefono + "," + direccion;
+                        String nuevoDato = usuario + "," + contrasena + "," + nombreCompleto + "," + correo + "," + telefono + "," + direccion;
 
-                    datosActuales.add(nuevoDato);
+                        datosActuales.add(nuevoDato);
 
-                    ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivo, datosActuales, false);
+                        ArchivoUtils.escribirArchivoBufferedWriter(rutaArchivo, datosActuales, false);
 
-                    adminuser.clear();
-                    adminpass.clear();
-                    nomComtf.clear();
-                    correotf.clear();
-                    telefonotf.clear();
-                    direcciontf.clear();
+                        adminuser.clear();
+                        adminpass.clear();
+                        nomComtf.clear();
+                        correotf.clear();
+                        telefonotf.clear();
+                        direcciontf.clear();
 
-                    mostrarAlertaPositiva("Registro Exitoso", "Datos registrados con exito", "Te enviamos un correo ;)");
-                    Correos.EnviarCorreoCuentaCreada(correo, nombreCompleto);
+                        mostrarAlertaPositiva("Registro Exitoso", "Datos registrados con exito", "Te enviamos un correo ;)");
+                        Correos.EnviarCorreoCuentaCreada(correo, nombreCompleto);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
+                else {
+                    mostrarAlerta("","El codigo no coincide", "");
+                }
+
             } else {
-                mostrarAlerta("", "error", "");
+                mostrarAlerta("", "Contraseña no valida", "Ingrese una contraseña de minimo 8 caracateres, una mayuscula, una minuscula, un digito y un caracter especial");
             }
         } else {
             mostrarAlerta("Error de registro", "Falta de informacion", "Por favor, llena todos los espacion");
